@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SplashScreen extends AppCompatActivity {
     Animation top_to_current;
+    Animation bottom_to_current;
     ImageView logo;
+    TextView slogan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +34,15 @@ public class SplashScreen extends AppCompatActivity {
     private void init()
     {
         logo = findViewById(R.id.logo);
+        slogan = findViewById(R.id.slogan);
         top_to_current = AnimationUtils.loadAnimation(this, R.anim.top_to_current);
+        bottom_to_current = AnimationUtils.loadAnimation(this, R.anim.bottom_to_current);
+
     }
 
     private void applyAnimation()
     {
         logo.setAnimation(top_to_current);
+        slogan.setAnimation(bottom_to_current);
     }
 }
