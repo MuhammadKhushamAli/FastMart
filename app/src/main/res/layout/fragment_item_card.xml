@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemCardFragment">
+    android:orientation="vertical"
+    tools:context=".ItemCardFragment"
+    android:theme="@style/Base.Theme.FastMart"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        />
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:fontFamily="sans-serif"
+            android:textSize="15sp"
+            android:layout_marginBottom="5dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/item_model"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAlignment="viewStart"
+                android:fontFamily="sans-serif"
+                android:textSize="11sp"
+                />
+            <TextView
+                android:id="@+id/item_color"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAlignment="viewStart"
+                android:fontFamily="sans-serif"
+                android:textSize="11sp"
+                android:layout_marginStart="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
-</FrameLayout>
+
+</LinearLayout>
