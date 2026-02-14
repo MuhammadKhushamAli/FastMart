@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:textColor">@color/black</item>
         <item name="loading_bar_color">@color/black</item>
+        <item name="deal_of_day_background_color">@color/skinish</item>
     </style>
 
     <style name="Theme.FastMart" parent="Base.Theme.FastMart" />
