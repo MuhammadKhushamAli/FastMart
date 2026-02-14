@@ -1,7 +1,9 @@
 package com.example.fastmart;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,6 +36,8 @@ public class SplashScreen extends AppCompatActivity {
         });
         init();
         applyAnimation();
+
+        new Handler().postDelayed(() -> moveToHome(), 5000);
     }
 
     private void init()
@@ -63,5 +67,11 @@ public class SplashScreen extends AppCompatActivity {
                 loading_bar.setVisibility(View.VISIBLE);
                 loading_bar.setAnimation(loading_bar_anim);
         }, 3000);
+    }
+
+    private void moveToHome()
+    {
+        startActivity(new Intent(SplashScreen.this, MainActivity.class));
+        finish();
     }
 }
