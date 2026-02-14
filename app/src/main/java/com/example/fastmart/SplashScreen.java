@@ -1,5 +1,6 @@
 package com.example.fastmart;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,6 +42,13 @@ public class SplashScreen extends AppCompatActivity {
         slogan = findViewById(R.id.slogan);
         loading_bar = findViewById(R.id.loading_bar);
         loading_bar.setVisibility(View.GONE);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+        {
+            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) loading_bar.getLayoutParams();
+            params.setMargins(0, 100, 0, 0);
+            loading_bar.setLayoutParams(params);
+        }
 
         top_to_current = AnimationUtils.loadAnimation(this, R.anim.top_to_current);
         bottom_to_current = AnimationUtils.loadAnimation(this, R.anim.bottom_to_current);
