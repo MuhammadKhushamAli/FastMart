@@ -4,5 +4,6 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="android:textColor">@color/white</item>
+        <item name="loading_bar_color">@color/white</item>
     </style>
 </resources>
