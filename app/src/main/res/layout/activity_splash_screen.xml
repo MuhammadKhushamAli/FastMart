@@ -31,6 +31,7 @@
         android:text="@string/app_slogan"
         />
     <View
+        android:id="@+id/loading_bar"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="?loading_bar_color"
