@@ -39,6 +39,7 @@ public class SplashScreen extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         slogan = findViewById(R.id.slogan);
         loading_bar = findViewById(R.id.loading_bar);
+        loading_bar.setVisibility(View.GONE);
 
         top_to_current = AnimationUtils.loadAnimation(this, R.anim.top_to_current);
         bottom_to_current = AnimationUtils.loadAnimation(this, R.anim.bottom_to_current);
@@ -49,6 +50,9 @@ public class SplashScreen extends AppCompatActivity {
     {
         logo.setAnimation(top_to_current);
         slogan.setAnimation(bottom_to_current);
-        loading_bar.setAnimation(loading_bar_anim);
+        loading_bar.postDelayed(() -> {
+                loading_bar.setVisibility(View.VISIBLE);
+                loading_bar.setAnimation(loading_bar_anim);
+        }, 3000);
     }
 }
