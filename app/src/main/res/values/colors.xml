@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greyish">#454141</color>
     <color name="skinish">#C18D96</color>
+    <color name="red">#FF0000</color>
 </resources>
