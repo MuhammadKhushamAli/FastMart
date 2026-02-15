@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".DealOfDayFragment"
     android:orientation="horizontal"
-    android:theme="@style/Base.Theme.FastMart"
     android:background="?deal_of_day_background_color"
     android:padding="10dp"
     >
