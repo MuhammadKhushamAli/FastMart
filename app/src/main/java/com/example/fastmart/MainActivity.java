@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
     TextView dodDescription;
 
     // Item List
+    ArrayList<CardView> itemCardsList;
+    View listFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
 
         // Deal of the Day Segment
         setDodContent();
+
+
+        fragManager.beginTransaction()
+                .show(fragManager.findFragmentById(R.id.home_item_list))
+                .commit();
+
     }
 
     @Override
@@ -67,9 +76,5 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
         dodPrice.setText(DataFile.dodPrice);
         dodName.setText(DataFile.dodName);
         dodDescription.setText(DataFile.dodDescription);
-    }
-
-    private void setItemList() {
-
     }
 }

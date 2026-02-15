@@ -2,4 +2,5 @@
 <resources>
     <attr name="loading_bar_color" format="color"/>
     <attr name="deal_of_day_background_color" format="color"/>
+    <attr name="item_image_color" format="color"/>
 </resources>
