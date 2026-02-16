@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class GridAdapter extends BaseAdapter {
+public class GridListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<DataFile.ItemCard> rawItems;
 
@@ -29,7 +29,7 @@ public class GridAdapter extends BaseAdapter {
         return rawItems.size();
     }
 
-    public GridAdapter(Context context, ArrayList<DataFile.ItemCard> rawItems)
+    public GridListAdapter(Context context, ArrayList<DataFile.ItemCard> rawItems)
     {
         this.context = context;
         this.rawItems = rawItems;

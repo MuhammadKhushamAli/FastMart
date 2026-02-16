@@ -5,16 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,7 +52,7 @@ public class ItemsListFragment extends ListFragment {
         ArrayList<DataFile.ItemCard> rawCardsList = DataFile.getItems();
 
         ListView list = getListView();
-        GridAdapter adapter = new GridAdapter(requireContext(), rawCardsList);
+        GridListAdapter adapter = new GridListAdapter(requireContext(), rawCardsList);
         list.setAdapter(adapter);
     }
 }
