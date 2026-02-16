@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class BuyFragment extends Fragment implements View.OnClickListener {
+public class BuyFragment extends Fragment {
     private static final String ARG_MSG = "message";
     private String paramMsg;
-    OnClickListener parentActivity;
+    private OnClickListener parentActivity;
     interface OnClickListener {
-        public void onClick();
+        public void onBuyClick();
+        public void onCancelClick();
     }
 
 
@@ -59,11 +61,15 @@ public class BuyFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         TextView message = view.findViewById(R.id.bought_item_message);
         message.setText(paramMsg);
-        view.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View view) {
-        parentActivity.onClick();
+        Button buyButton = view.findViewById(R.id.confirm_buy_button);
+        buyButton.setOnClickListener((v) -> {
+            parentActivity.onBuyClick();
+        });
+
+        Button cancelButton = view.findViewById(R.id.confirm_cancel_button);
+        cancelButton.setOnClickListener((v) -> {
+            parentActivity.onCancelClick();
+        });
     }
 }

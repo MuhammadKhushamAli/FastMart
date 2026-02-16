@@ -24,6 +24,8 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
     FragmentManager fragManager;
 
+    BuyFragment buyFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +60,16 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
         String.append("You are going to buy ").append(itemName).append(" in ").append(itemColor)
                 .append(" color for ").append(itemPrice);
 
-        BuyFragment buyFragment = BuyFragment.newInstance(String.toString());
+        buyFragment = BuyFragment.newInstance(String.toString());
+
+        fragManager.beginTransaction()
+                .add(R.id.confirmation_popup, buyFragment)
+                .hide(buyFragment)
+                .commit();
 
         buyButton.setOnClickListener((v) -> {
             fragManager.beginTransaction()
-                    .replace(R.id.confirmation_popup, buyFragment)
+                    .show(buyFragment)
                     .commit();
         });
     }
@@ -97,8 +104,14 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
 
     @Override
-    public void onClick() {
+    public void onBuyClick() {
 
     }
 
+    @Override
+    public void onCancelClick() {
+        fragManager.beginTransaction()
+                .hide(buyFragment)
+                .commit();
+    }
 }
