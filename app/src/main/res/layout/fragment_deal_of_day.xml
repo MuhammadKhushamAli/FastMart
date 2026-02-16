@@ -67,6 +67,8 @@
             android:fontFamily="sans-serif-light"
             android:textStyle="normal"
             android:textAlignment="viewStart"
+            android:maxLines="1"
+            android:ellipsize="end"
             />
     </LinearLayout>
 

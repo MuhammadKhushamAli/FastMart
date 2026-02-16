@@ -5,4 +5,6 @@ public class KeyUtils {
     public static final String nameKey = "name_key";
     public static final String priceKey = "price_key";
     public static final String descriptionKey = "description_key";
+    public static final String modelKey = "model_key";
+    public static final String colorKey = "color_key";
 }

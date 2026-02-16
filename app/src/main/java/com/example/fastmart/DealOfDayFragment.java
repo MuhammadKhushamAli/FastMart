@@ -1,5 +1,7 @@
 package com.example.fastmart;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DealOfDayFragment extends Fragment {
+public class DealOfDayFragment extends Fragment implements View.OnClickListener {
 
     ImageView dodImage;
     TextView dodCategory;
@@ -33,6 +35,9 @@ public class DealOfDayFragment extends Fragment {
     String paramPrice;
     String paramDescription;
 
+    interface onClickListener {
+        public void onItemClick(View v);
+    }
     public static DealOfDayFragment newInstance(int imageKey, String category, String name, String price, String description) {
         DealOfDayFragment fragment = new DealOfDayFragment();
         Bundle args = new Bundle();
@@ -61,6 +66,13 @@ public class DealOfDayFragment extends Fragment {
         }
     }
 
+    onClickListener parentActivity;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        parentActivity = (onClickListener) context;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,9 +90,17 @@ public class DealOfDayFragment extends Fragment {
         dodDescription = view.findViewById(R.id.dod_item_description);
 
         dodImage.setImageResource(paramImageKey);
+        dodImage.setTag(paramImageKey);
         dodCategory.setText(paramCategory);
         dodPrice.setText(paramPrice);
         dodName.setText(paramName);
         dodDescription.setText(paramDescription);
+
+        view.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        parentActivity.onItemClick(view);
     }
 }

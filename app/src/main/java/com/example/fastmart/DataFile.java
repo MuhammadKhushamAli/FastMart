@@ -22,7 +22,9 @@ public class DataFile {
     static public final String dodCatagory = "Microphone";
     static public final String dodPrice = "$123";
     static public final String dodName = "Microphone";
-    static public final String dodDescription = "Dynamic Microphone";
+    static public final String dodDescription = "A microphone is an essential audio device that captures sound waves and converts them into electrical signals for recording, amplification, or broadcasting. It allows for clear voice communication, high-quality audio recording, and seamless sound transmission in a variety of settings—whether in professional studios, live performances, podcasts, gaming, or virtual meetings. Modern microphones come in various types, including dynamic, condenser, and USB models, each designed to suit different audio needs. With features like noise cancellation, cardioid pickup patterns, and plug-and-play functionality, microphones ensure crisp, accurate, and reliable sound capture for both amateurs and professionals alike.";
+    static public final String dodModel = "123-A";
+    static public final String dodColor = "Black";
 
     static public ArrayList<ItemCard> getItems() {
         ArrayList<ItemCard> items = new ArrayList<>();
