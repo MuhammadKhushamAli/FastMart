@@ -2,6 +2,7 @@ package com.example.fastmart;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DataFile {
     static public class ItemCard {
@@ -10,13 +11,15 @@ public class DataFile {
         String name;
         String model;
         String color;
+        String description;
 
-        ItemCard(int imageID, String price, String name, String model, String color) {
+        ItemCard(int imageID, String price, String name, String model, String color, String description) {
             this.imageID = imageID;
             this.price = price;
             this.name = name;
             this.model = model;
             this.color = color;
+            this.description = description;
         }
     }
     static public final String dodCatagory = "Microphone";
@@ -26,13 +29,11 @@ public class DataFile {
     static public final String dodModel = "123-A";
     static public final String dodColor = "Black";
 
-    static public ArrayList<ItemCard> getItems() {
-        ArrayList<ItemCard> items = new ArrayList<>();
-        items.add(new ItemCard(R.drawable.headphone1, "$1234", "Sony", "m-123","Black"));
-        items.add(new ItemCard(R.drawable.headphone2, "$1234", "Sony", "m-123","Black"));
-        items.add(new ItemCard(R.drawable.headphone3, "$1234", "Sony", "m-123","Black"));
-        items.add(new ItemCard(R.drawable.headphone4, "$1234", "Sony", "m-123","Black"));
-        return items;
-    }
+    static public ArrayList<ItemCard> items = new ArrayList<>(Arrays.asList(
+        new ItemCard(R.drawable.headphone1, "$1234", "Sony", "m-123","Black", "Headphones are audio devices designed to deliver immersive sound directly to your ears, offering a personal and high-quality listening experience. They are ideal for music, gaming, calls, podcasts, and multimedia consumption. Modern headphones come in various types, including over-ear, on-ear, and in-ear, each providing comfort, noise isolation, and superior sound clarity. Features like wireless connectivity, active noise cancellation, built-in microphones, and long-lasting battery life enhance convenience and audio performance. Whether for professional use, entertainment, or travel, headphones combine style, comfort, and exceptional sound fidelity to bring your audio experience to life."),
+        new ItemCard(R.drawable.headphone2, "$1234", "Sony", "m-123","Black", "Headphones are audio devices designed to deliver immersive sound directly to your ears, offering a personal and high-quality listening experience. They are ideal for music, gaming, calls, podcasts, and multimedia consumption. Modern headphones come in various types, including over-ear, on-ear, and in-ear, each providing comfort, noise isolation, and superior sound clarity. Features like wireless connectivity, active noise cancellation, built-in microphones, and long-lasting battery life enhance convenience and audio performance. Whether for professional use, entertainment, or travel, headphones combine style, comfort, and exceptional sound fidelity to bring your audio experience to life."),
+        new ItemCard(R.drawable.headphone3, "$1234", "Sony", "m-123","Black", "Headphones are audio devices designed to deliver immersive sound directly to your ears, offering a personal and high-quality listening experience. They are ideal for music, gaming, calls, podcasts, and multimedia consumption. Modern headphones come in various types, including over-ear, on-ear, and in-ear, each providing comfort, noise isolation, and superior sound clarity. Features like wireless connectivity, active noise cancellation, built-in microphones, and long-lasting battery life enhance convenience and audio performance. Whether for professional use, entertainment, or travel, headphones combine style, comfort, and exceptional sound fidelity to bring your audio experience to life."),
+        new ItemCard(R.drawable.headphone4, "$1234", "Sony", "m-123","Black", "Headphones are audio devices designed to deliver immersive sound directly to your ears, offering a personal and high-quality listening experience. They are ideal for music, gaming, calls, podcasts, and multimedia consumption. Modern headphones come in various types, including over-ear, on-ear, and in-ear, each providing comfort, noise isolation, and superior sound clarity. Features like wireless connectivity, active noise cancellation, built-in microphones, and long-lasting battery life enhance convenience and audio performance. Whether for professional use, entertainment, or travel, headphones combine style, comfort, and exceptional sound fidelity to bring your audio experience to life.")
+    ));
 
 }

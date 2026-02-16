@@ -60,7 +60,16 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
 
     @Override
     public void onItemClickListener(int index) {
+        DataFile.ItemCard card = DataFile.items.get(index);
+        Intent i = new Intent(MainActivity.this, DetailedView.class);
+        i.putExtra(KeyUtils.imageIDKey, card.imageID);
+        i.putExtra(KeyUtils.nameKey, card.name);
+        i.putExtra(KeyUtils.priceKey, card.price);
+        i.putExtra(KeyUtils.descriptionKey, card.description);
+        i.putExtra(KeyUtils.modelKey, card.model);
+        i.putExtra(KeyUtils.colorKey, card.color);
 
+        startActivity(i);
     }
 
     @Override

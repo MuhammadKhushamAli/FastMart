@@ -49,10 +49,16 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<DataFile.ItemCard> rawCardsList = DataFile.getItems();
+        ArrayList<DataFile.ItemCard> rawCardsList = DataFile.items;
 
         ListView list = getListView();
         GridListAdapter adapter = new GridListAdapter(requireContext(), rawCardsList);
         list.setAdapter(adapter);
+    }
+
+    @Override
+    public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        parentActivity.onItemClickListener(position);
     }
 }
