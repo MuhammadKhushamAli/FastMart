@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/header_content"
         android:textAlignment="viewStart"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-black"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,6 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dod_header"
         app:layout_constraintVertical_chainStyle="packed"
+        android:paddingHorizontal="20dp"
         />
         <TextView
             android:id="@+id/dod_header"
@@ -45,6 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/dod_banner"
+            android:padding="10dp"
             />
         <fragment
             android:id="@+id/dod_banner"
@@ -69,6 +71,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
         <fragment
