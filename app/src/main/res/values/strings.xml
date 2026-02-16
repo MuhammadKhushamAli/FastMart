@@ -6,4 +6,6 @@
     <string name="recommended_section_heading">Recommended for you</string>
     <string name="dod_img_description">Item Image</string>
     <string name="buy_button">Buy Now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
