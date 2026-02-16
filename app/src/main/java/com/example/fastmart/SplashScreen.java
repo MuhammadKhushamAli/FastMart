@@ -38,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
         init();
         applyAnimation();
 
-        new Handler().postDelayed(() -> moveToHome(), 5000);
+        new Handler().postDelayed(this::moveToHome, 5000);
     }
 
     private void init()
