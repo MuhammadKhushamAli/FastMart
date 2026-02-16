@@ -26,11 +26,7 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
     View dodFrag;
 
     // Dod Segment
-    ImageView dodImage;
-    TextView dodCategory;
-    TextView dodPrice;
-    TextView dodName;
-    TextView dodDescription;
+
 
     // Item List
     ArrayList<CardView> itemCardsList;
@@ -49,10 +45,16 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
         fragManager = getSupportFragmentManager();
 
         // Deal of the Day Segment
-        setDodContent();
-
+        DealOfDayFragment dealOfDayFragment = DealOfDayFragment.newInstance(
+                R.drawable.dod,
+                DataFile.dodCatagory,
+                DataFile.dodName,
+                DataFile.dodPrice,
+                DataFile.dodDescription
+        );
 
         fragManager.beginTransaction()
+                .add(R.id.dod_banner, dealOfDayFragment)
                 .show(fragManager.findFragmentById(R.id.home_item_list))
                 .commit();
 
@@ -63,18 +65,4 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
 
     }
 
-    private void setDodContent() {
-        dodFrag = fragManager.findFragmentById(R.id.dod_banner).requireView();
-        dodImage = dodFrag.findViewById(R.id.deal_of_the_day_image);
-        dodCategory = dodFrag.findViewById(R.id.dod_item_catagory);
-        dodPrice = dodFrag.findViewById(R.id.dod_item_price);
-        dodName = dodFrag.findViewById(R.id.dod_item_name);
-        dodDescription = dodFrag.findViewById(R.id.dod_item_description);
-
-        dodImage.setImageResource(R.drawable.dod);
-        dodCategory.setText(DataFile.dodCatagory);
-        dodPrice.setText(DataFile.dodPrice);
-        dodName.setText(DataFile.dodName);
-        dodDescription.setText(DataFile.dodDescription);
-    }
 }

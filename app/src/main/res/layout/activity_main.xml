@@ -48,16 +48,15 @@
             app:layout_constraintBottom_toTopOf="@id/dod_banner"
             android:padding="10dp"
             />
-        <fragment
+        <FrameLayout
             android:id="@+id/dod_banner"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            tools:layout="@layout/fragment_deal_of_day"
-            class="com.example.fastmart.DealOfDayFragment"
             app:layout_constraintTop_toBottomOf="@id/dod_header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/recommended_header"
+            android:orientation="vertical"
             />
         <TextView
             android:id="@+id/recommended_header"
