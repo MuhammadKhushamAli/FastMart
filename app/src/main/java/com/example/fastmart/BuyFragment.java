@@ -8,19 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BuyFragmentFragment extends Fragment {
+public class BuyFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
 
-    public BuyFragmentFragment() {
+    public BuyFragment() {
         // Required empty public constructor
     }
 
-    public static BuyFragmentFragment newInstance(String param1, String param2) {
-        BuyFragmentFragment fragment = new BuyFragmentFragment();
+    public static BuyFragment newInstance(String param1, String param2) {
+        BuyFragment fragment = new BuyFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
