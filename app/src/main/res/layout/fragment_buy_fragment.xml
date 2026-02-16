@@ -10,14 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
-        app:cardElevation="50dp"
+        app:cardElevation="10dp"
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_margin="20dp"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -26,14 +27,16 @@
                 android:textSize="20sp"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="5dp"
             />
             <TextView
-                android:id="@+id/bought_tem_message"
+                android:id="@+id/bought_item_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif"
                 android:textSize="15sp"
+                android:layout_marginBottom="5dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +51,7 @@
                     />
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/buy_button"
                     />

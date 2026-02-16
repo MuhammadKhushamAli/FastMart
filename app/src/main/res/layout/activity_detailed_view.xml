@@ -11,7 +11,7 @@
         android:id="@+id/details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/buyButton"
+        android:layout_above="@id/buy_button"
         android:layout_alignParentTop="true"
         >
         <LinearLayout
@@ -86,10 +86,15 @@
         </LinearLayout>
     </ScrollView>
     <Button
-        android:id="@+id/buyButton"
+        android:id="@+id/buy_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/buy_button"
         android:layout_alignParentBottom="true"
+        />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/confirmation_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 </RelativeLayout>
