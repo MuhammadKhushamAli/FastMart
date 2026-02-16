@@ -1,13 +1,18 @@
 package com.example.fastmart;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -25,6 +30,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
     FragmentManager fragManager;
 
     BuyFragment buyFragment;
+    private StringBuilder stringBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +62,11 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
         );
 
         fragManager = getSupportFragmentManager();
-        StringBuilder String = new StringBuilder();
-        String.append("You are going to buy ").append(itemName).append(" in ").append(itemColor)
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("You are going to buy ").append(itemName).append(" in ").append(itemColor)
                 .append(" color for ").append(itemPrice);
 
-        buyFragment = BuyFragment.newInstance(String.toString());
+        buyFragment = BuyFragment.newInstance(stringBuilder.toString());
 
         fragManager.beginTransaction()
                 .add(R.id.confirmation_popup, buyFragment)
@@ -105,7 +111,23 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
     @Override
     public void onBuyClick() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.SEND_SMS}, 1
+            );
+        }
+        else {
+            String message = "You bought" + stringBuilder.substring(20);
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(DataFile.phoneNumber, null, message, null, null);
 
+            fragManager.beginTransaction()
+                    .hide(buyFragment)
+                    .commit();
+        }
     }
 
     @Override

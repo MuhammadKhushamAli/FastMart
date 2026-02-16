@@ -22,6 +22,7 @@ public class DataFile {
             this.description = description;
         }
     }
+    static public final String phoneNumber = "03107488488";
     static public final String dodCatagory = "Microphone";
     static public final String dodPrice = "$123";
     static public final String dodName = "Microphone";
