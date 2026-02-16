@@ -4,5 +4,6 @@
     <string name="header_content">Welcome</string>
     <string name="dod_heading">Deal of the Day</string>
     <string name="recommended_section_heading">Recommended for you</string>
-    <string name="dod_img_description">Item Image (Microphone)</string>
+    <string name="dod_img_description">Item Image</string>
+    <string name="buy_button">Buy Now</string>
 </resources>
