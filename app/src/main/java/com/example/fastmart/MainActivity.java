@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements ItemsListFragment
         );
 
         fragManager.beginTransaction()
-                .add(R.id.dod_banner, dealOfDayFragment)
+                .replace(R.id.dod_banner, dealOfDayFragment)
                 .show(fragManager.findFragmentById(R.id.home_item_list))
                 .commit();
 
