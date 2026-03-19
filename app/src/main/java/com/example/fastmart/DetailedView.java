@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class DetailedView extends AppCompatActivity implements BuyFragment.OnClickListener {
     ImageView detailedImage;
+    ImageView backArrow;
     TextView name;
     TextView price;
     TextView description;
@@ -78,6 +79,9 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
                     .show(buyFragment)
                     .commit();
         });
+        backArrow.setOnClickListener((v) -> {
+            finish();
+        });
     }
 
     private void initAndSetup(
@@ -98,6 +102,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
         model = findViewById(R.id.detailed_item_model);
         color = findViewById(R.id.detailed_item_color);
         buyButton = findViewById(R.id.buy_button);
+        backArrow = findViewById(R.id.back_arrow);
 
         detailedImage.setImageResource(imageID);
         name.setText(itemName);
