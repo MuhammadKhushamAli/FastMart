@@ -11,4 +11,5 @@
     <string name="onBoard_screen_img_decription">On Board Image</string>
     <string name="onBoard_screen_title">Welcome to Fast Mart</string>
     <string name="onBoard_screen_slogan">Shop Fast with Fast</string>
+    <string name="onBoard_button_text">Get Started -></string>
 </resources>
