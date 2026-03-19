@@ -8,4 +8,7 @@
     <string name="buy_button">Buy Now</string>
     <string name="buy_message">Wow! Nice Choice</string>
     <string name="cancel_button">Cancel</string>
+    <string name="onBoard_screen_img_decription">On Board Image</string>
+    <string name="onBoard_screen_title">Welcome to Fast Mart</string>
+    <string name="onBoard_screen_slogan">Shop Fast with Fast</string>
 </resources>
