@@ -72,7 +72,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private void moveToHome()
     {
-        startActivity(new Intent(SplashScreen.this, MainActivity.class));
+        startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
         finish();
     }
 }
