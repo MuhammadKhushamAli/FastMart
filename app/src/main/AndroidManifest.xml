@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastMart">
         <activity
+            android:name=".loginSignup"
+            android:exported="false" />
+        <activity
             android:name=".OnBoardScreen"
             android:exported="false" />
         <activity

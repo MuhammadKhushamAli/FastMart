@@ -12,4 +12,6 @@
     <string name="onBoard_screen_title">Welcome to Fast Mart</string>
     <string name="onBoard_screen_slogan">Shop Fast with Fast</string>
     <string name="onBoard_button_text">Get Started -></string>
+    <string name="login_signup_page_title">Get Started Now</string>
+    <string name="login_signup_page_message">Create an account or login to explore about this app</string>
 </resources>
