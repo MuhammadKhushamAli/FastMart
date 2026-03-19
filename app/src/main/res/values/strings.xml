@@ -14,4 +14,7 @@
     <string name="onBoard_button_text">Get Started -></string>
     <string name="login_signup_page_title">Get Started Now</string>
     <string name="login_signup_page_message">Create an account or login to explore about this app</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button_text">Login</string>
 </resources>
