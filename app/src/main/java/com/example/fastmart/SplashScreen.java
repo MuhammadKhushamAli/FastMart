@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,7 @@ public class SplashScreen extends AppCompatActivity {
     ImageView logo;
     TextView slogan;
     View loading_bar;
+    SharedPreferences sPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class SplashScreen extends AppCompatActivity {
         top_to_current = AnimationUtils.loadAnimation(this, R.anim.top_to_current);
         bottom_to_current = AnimationUtils.loadAnimation(this, R.anim.bottom_to_current);
         loading_bar_anim = AnimationUtils.loadAnimation(this, R.anim.loading_bar);
+        sPref = getSharedPreferences(KeyUtils.userFileKey, MODE_PRIVATE);
     }
 
     private void applyAnimation()
@@ -72,7 +75,12 @@ public class SplashScreen extends AppCompatActivity {
 
     private void moveToHome()
     {
-        startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
+        if (sPref.getBoolean(KeyUtils.isLoggedInKey, false)) {
+            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+        }
+        else {
+            startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
+        }
         finish();
     }
 }

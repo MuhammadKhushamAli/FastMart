@@ -11,7 +11,7 @@
         android:id="@+id/onBoardImage"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:src="@drawable/onBoard"
+        android:src="@drawable/onboard"
         android:contentDescription="@string/onBoard_screen_img_decription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/onBoardButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/onBoard_button_text"

@@ -1,5 +1,6 @@
 package com.example.fastmart;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,7 +9,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
+
 public class OnBoardScreen extends AppCompatActivity {
+    MaterialButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,14 @@ public class OnBoardScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        init();
+        button.setOnClickListener((v) -> {
+            startActivity(new Intent(OnBoardScreen.this, loginSignup.class));
+            finish();
+        });
+    }
+
+    private void init() {
+        button = findViewById(R.id.onBoardButton);
     }
 }
