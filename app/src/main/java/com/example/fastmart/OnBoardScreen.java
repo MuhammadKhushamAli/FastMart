@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +14,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class OnBoardScreen extends AppCompatActivity {
     MaterialButton button;
+    SharedPreferences sPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +35,10 @@ public class OnBoardScreen extends AppCompatActivity {
 
     private void init() {
         button = findViewById(R.id.onBoardButton);
+        sPref = getSharedPreferences(KeyUtils.userFileKey, MODE_PRIVATE);
+        if (sPref.getBoolean(KeyUtils.isFirstTimeApp, true))
+        {
+            sPref.edit().putBoolean(KeyUtils.isFirstTimeApp, false).apply();
+        }
     }
 }
