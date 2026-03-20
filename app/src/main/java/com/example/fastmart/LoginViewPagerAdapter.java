@@ -15,11 +15,11 @@ public class LoginViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return loginFragment();
+                return new login();
             case 1:
-                return signupFragment();
+                return new signup();
             default:
-                return loginFragment();
+                return new login();
         }
     }
 

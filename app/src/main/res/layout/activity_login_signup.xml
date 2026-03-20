@@ -47,16 +47,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         >
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/loginSignupTabsLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/loginSignupViewPager2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
+            android:orientation="vertical"
+            >
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/loginSignupTabsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/loginSignupViewPager2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

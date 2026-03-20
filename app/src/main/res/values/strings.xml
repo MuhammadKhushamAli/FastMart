@@ -8,7 +8,7 @@
     <string name="buy_button">Buy Now</string>
     <string name="buy_message">Wow! Nice Choice</string>
     <string name="cancel_button">Cancel</string>
-    <string name="onBoard_screen_img_decription">On Board Image</string>
+    <string name="onBoard_screen_img_description">On Board Image</string>
     <string name="onBoard_screen_title">Welcome to Fast Mart</string>
     <string name="onBoard_screen_slogan">Shop Fast with Fast</string>
     <string name="onBoard_button_text">Get Started -></string>
@@ -18,5 +18,5 @@
     <string name="password_hint">Password</string>
     <string name="login_button_text">Login</string>
     <string name="verifyPassword_hint">Verify Password</string>
-    <string name="singnup_button_text">Sign Up</string>
+    <string name="signup_button_text">Sign Up</string>
 </resources>

@@ -12,7 +12,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/onboard"
-        android:contentDescription="@string/onBoard_screen_img_decription"
+        android:contentDescription="@string/onBoard_screen_img_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
