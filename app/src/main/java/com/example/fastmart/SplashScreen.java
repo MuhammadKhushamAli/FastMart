@@ -79,7 +79,13 @@ public class SplashScreen extends AppCompatActivity {
             startActivity(new Intent(SplashScreen.this, MainActivity.class));
         }
         else {
-            startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
+            if(sPref.getBoolean(KeyUtils.isFirstTimeApp, true)) {
+                startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
+            }
+            else
+            {
+                startActivity(new Intent(SplashScreen.this, loginSignup.class));
+            }
         }
         finish();
     }

@@ -9,5 +9,5 @@ public class KeyUtils {
     public static final String colorKey = "color_key";
     public static final String userFileKey = "user";
     public static final String isLoggedInKey = "isLoggedIn";
-    public static final String isFirstTimeApp = "isFirstTimeApp"
+    public static final String isFirstTimeApp = "isFirstTimeApp";
 }
