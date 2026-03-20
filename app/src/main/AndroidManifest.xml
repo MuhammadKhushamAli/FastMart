@@ -15,7 +15,8 @@
         android:theme="@style/Theme.FastMart">
         <activity
             android:name=".loginSignup"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".OnBoardScreen"
             android:exported="false" />
