@@ -6,4 +6,6 @@
     <color name="skinish">#F4ABB9</color>
     <color name="red">#FF0000</color>
     <color name="light_greyish">#928E8E</color>
+    <color name="trans_bg_shade_dark">#69000000</color>
+    <color name="trans_bg_shade_light">#81C7BCBC</color>
 </resources>

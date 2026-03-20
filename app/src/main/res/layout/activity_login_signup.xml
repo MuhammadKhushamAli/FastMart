@@ -52,11 +52,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                android:layout_marginHorizontal="30dp"
+                app:cardCornerRadius="5dp"
+                android:backgroundTint="?login_signup_bg"
+                >
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/loginSignupTabsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:tabBackground="@drawable/indicator_rectangle"
+                app:tabIndicatorHeight="0dp"
+                android:layout_margin="3dp"
                 />
+            </androidx.cardview.widget.CardView>
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/loginSignupViewPager2"
                 android:layout_width="match_parent"

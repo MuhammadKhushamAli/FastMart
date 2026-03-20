@@ -4,4 +4,5 @@
     <attr name="deal_of_day_background_color" format="color"/>
     <attr name="item_image_color" format="color"/>
     <attr name="button_bg_color" format="color"/>
+    <attr name="login_signup_bg" format="color"/>
 </resources>
