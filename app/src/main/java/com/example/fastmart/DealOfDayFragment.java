@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DealOfDayFragment extends Fragment implements View.OnClickListener {
+public class DealOfDayFragment extends Fragment {
 
     ImageView dodImage;
     TextView dodCategory;
@@ -96,11 +96,8 @@ public class DealOfDayFragment extends Fragment implements View.OnClickListener 
         dodName.setText(paramName);
         dodDescription.setText(paramDescription);
 
-        view.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        parentActivity.onItemClick(view);
+        view.setOnClickListener((v) -> {
+            parentActivity.onItemClick(view);
+        });
     }
 }
