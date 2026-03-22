@@ -53,19 +53,19 @@ public class signup extends Fragment {
         TextInputEditText passwordField = view.findViewById(R.id.signUpPassword);
         TextInputEditText verifyPasswordField = view.findViewById(R.id.signUpVerifyPassword);
 
+
         AutoCompleteTextView genderField = view.findViewById(R.id.signUpGender);
 
 
-        genderFieldCreator(R.id.signUpGender);
+        genderFieldCreator(genderField);
 
-        dateDialogueCreator(R.id.signUpDOB);
+        dateDialogueCreator(dobField);
 
         signupButton.setOnClickListener((v) -> {
             validateAndSave(nameField, dobField, genderField, emailField, phNoField, passwordField, verifyPasswordField);
         });
     }
-    private void dateDialogueCreator(int idOfField) {
-        TextInputEditText dobField = view.findViewById(idOfField);
+    private void dateDialogueCreator(TextInputEditText dobField) {
         // Calender
         dobField.setInputType(InputType.TYPE_NULL);
         dobField.setOnClickListener((v) -> {
@@ -82,7 +82,7 @@ public class signup extends Fragment {
         });
     }
 
-    private void genderFieldCreator(int idOfField) {
+    private void genderFieldCreator(AutoCompleteTextView genderField) {
 
         // Gender Dropdown List
         genderField.setKeyListener(null);
@@ -132,7 +132,7 @@ public class signup extends Fragment {
             }
 
             LocalDate currentDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
             LocalDate parsedDate = LocalDate.parse(dob, formatter);
 
             if (parsedDate.isAfter(currentDate)) {
