@@ -15,11 +15,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ItemsListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ItemsListFragment extends ListFragment {
 
     public interface onItemClicked {
@@ -42,14 +37,14 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_items_list, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<DataFile.ItemCard> rawCardsList = DataFile.items;
+        MyApplication app = (MyApplication) requireContext().getApplicationContext();
+        ArrayList<Item> rawCardsList = app.items;
 
         ListView list = getListView();
         GridListAdapter adapter = new GridListAdapter(requireContext(), rawCardsList);

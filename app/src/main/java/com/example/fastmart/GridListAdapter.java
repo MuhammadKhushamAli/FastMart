@@ -11,8 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class GridListAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<DataFile.ItemCard> rawItems;
+    private final Context context;
+    private final ArrayList<Item> rawItems;
 
     @Override
     public long getItemId(int i) {
@@ -29,7 +29,7 @@ public class GridListAdapter extends BaseAdapter {
         return rawItems.size();
     }
 
-    public GridListAdapter(Context context, ArrayList<DataFile.ItemCard> rawItems)
+    public GridListAdapter(Context context, ArrayList<Item> rawItems)
     {
         this.context = context;
         this.rawItems = rawItems;
@@ -51,13 +51,13 @@ public class GridListAdapter extends BaseAdapter {
         TextView itemModel = cardView.findViewById(R.id.item_model);
         TextView itemColor = cardView.findViewById(R.id.item_color);
 
-        DataFile.ItemCard item = rawItems.get(i);
+        Item item = rawItems.get(i);
 
-        itemImage.setImageResource(item.imageID);
-        itemPrice.setText(item.price);
-        itemName.setText(item.name);
-        itemModel.setText(item.model);
-        itemColor.setText(item.color);
+        itemImage.setImageResource(item.getImageID());
+        itemPrice.setText(item.getPrice());
+        itemName.setText(item.getName());
+        itemModel.setText(item.getModel());
+        itemColor.setText(item.getColor());
 
         return cardView;
     }

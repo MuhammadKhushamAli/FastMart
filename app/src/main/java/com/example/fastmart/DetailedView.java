@@ -2,12 +2,14 @@ package com.example.fastmart;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +34,9 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
     BuyFragment buyFragment;
     private StringBuilder stringBuilder;
+
+    MyApplication app;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +108,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
         color = findViewById(R.id.detailed_item_color);
         buyButton = findViewById(R.id.buy_button);
         backArrow = findViewById(R.id.back_arrow);
+        app = (MyApplication) getApplicationContext();
 
         detailedImage.setImageResource(imageID);
         name.setText(itemName);
@@ -125,10 +131,29 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
             );
         }
         else {
-            String message = "You bought" + stringBuilder.substring(20);
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(DataFile.phoneNumber, null, message, null, null);
+            SharedPreferences sPref = getSharedPreferences(KeyUtils.userFileKey, MODE_PRIVATE);
 
+            if(sPref.getBoolean(KeyUtils.isLoggedInKey, false)) {
+                String userPhoneNumber = app.phNo;
+                String appPhNo = app.appPhNo;
+                String name = app.name;
+                if(!(userPhoneNumber.isEmpty() || name.isEmpty())) {
+                    String toUserMessage = "You bought" + stringBuilder.substring(20);
+                    String toAppMessage = name + " bought" + stringBuilder.substring(20);
+                    smsManager.sendTextMessage(userPhoneNumber, null, toUserMessage, null, null);
+                    smsManager.sendTextMessage(appPhNo, null, toAppMessage, null, null);
+                }
+                else {
+                    Toast.makeText(this, "First Complete Your Personal Details", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+            }
+            else {
+                startActivity(new Intent(DetailedView.this, loginSignup.class));
+                finish();
+            }
             fragManager.beginTransaction()
                     .hide(buyFragment)
                     .commit();

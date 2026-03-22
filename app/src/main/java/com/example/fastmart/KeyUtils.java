@@ -12,4 +12,8 @@ public class KeyUtils {
     public static final String isFirstTimeApp = "isFirstTimeApp";
     public static final String emailPrefKey = "prefEmail";
     public static final String passPrefKey = "prefPass";
+    public static final String namePrefKey = "prefName";
+    public static final String phNoPrefKey = "prefPhNo";
+    public static final String genderPrefKey = "prefGender";
+    public static final String dobPrefKey = "prefDOB";
 }
