@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -47,7 +48,7 @@ public class login extends Fragment {
         MaterialButton loginButton = view.findViewById(R.id.loginButton);
         TextInputEditText emailField = view.findViewById(R.id.loginEmail);
         TextInputEditText passwordField = view.findViewById(R.id.loginPassword);
-        Activity activity = requireActivity();
+        Context context = requireContext();
 
         loginButton.setOnClickListener((v) -> {
            try {
@@ -55,23 +56,23 @@ public class login extends Fragment {
                String password = passwordField.getText().toString();
 
                if (email.isEmpty() || password.isEmpty()) {
-                   Toast.makeText(activity, "All Fields Required", Toast.LENGTH_LONG).show();
+                   Toast.makeText(context, "All Fields Required", Toast.LENGTH_LONG).show();
                    return;
                }
 
-               SharedPreferences sPref = activity.getSharedPreferences(KeyUtils.userFileKey, activity.MODE_PRIVATE);
+               SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, context.MODE_PRIVATE);
 
                if ((sPref.getString(KeyUtils.emailPrefKey + email, "").equals(email)) &&
                        (sPref.getString(KeyUtils.passPrefKey + email, "").equals(password))) {
                    if (!(sPref.edit().putBoolean(KeyUtils.isLoggedInKey, true).commit())) {
-                       Toast.makeText(activity, "Unable To LoggedIn", Toast.LENGTH_LONG).show();
+                       Toast.makeText(context, "Unable To LoggedIn", Toast.LENGTH_LONG).show();
                    }
                }
                else {
-                   Toast.makeText(activity, "Incorrect Details", Toast.LENGTH_LONG).show();
+                   Toast.makeText(context, "Incorrect Details", Toast.LENGTH_LONG).show();
                }
            } catch (Exception e) {
-               Toast.makeText(activity, "Something Went Wrong", Toast.LENGTH_LONG).show();
+               Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_LONG).show();
            }
         });
     }
