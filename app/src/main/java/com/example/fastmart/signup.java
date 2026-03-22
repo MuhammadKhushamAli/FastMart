@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,21 +19,12 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class signup extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
     public signup() {
-        // Required empty public constructor
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -50,38 +42,38 @@ public class signup extends Fragment {
         TextInputEditText verifyPasswordField = view.findViewById(R.id.signUpVerifyPassword);
 
         signupButton.setOnClickListener((v) -> {
-            Activity activity = requireActivity();
+            Context context = requireContext();
             try {
                 String password = passwordField.getText().toString();
                 String verifyPassword = verifyPasswordField.getText().toString();
                 String email = emailField.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty() || verifyPassword.isEmpty()) {
-                    Toast.makeText(activity, "All Fields Required", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "All Fields Required", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (!password.equals(verifyPassword))
                 {
-                    Toast.makeText(activity, "Password and Verify Password Must be Equal", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Password and Verify Password Must be Equal", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                SharedPreferences sPref = activity.getSharedPreferences(KeyUtils.userFileKey, activity.MODE_PRIVATE);
+                SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
                 SharedPreferences.Editor sPrefEditor = sPref.edit();
                 sPrefEditor.putString(KeyUtils.emailPrefKey + email, email);
                 sPrefEditor.putString(KeyUtils.passPrefKey + email, password);
                 if (sPrefEditor.commit()) {
                     sPrefEditor.putBoolean(KeyUtils.isLoggedInKey, true)
                             .apply();
-                    startActivity(new Intent(activity, MainActivity.class));
-                    activity.finish();
+                    startActivity(new Intent(context, MainActivity.class));
+                    context.finish();
                 }
                 else {
-                    Toast.makeText(activity, "Unable to Save Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Unable to Save Details", Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
-                Toast.makeText(activity,"Something Went Wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"Something Went Wrong", Toast.LENGTH_LONG).show();
             }
 
         });
