@@ -91,14 +91,16 @@ public class MyApplication extends Application {
                         "Microphone",
                         "123-A",
                         "Black",
-                        "A microphone is an essential audio device that captures sound waves and converts them into electrical signals for recording, amplification, or broadcasting. It allows for clear voice communication, high-quality audio recording, and seamless sound transmission in a variety of settings—whether in professional studios, live performances, podcasts, gaming, or virtual meetings. Modern microphones come in various types, including dynamic, condenser, and USB models, each designed to suit different audio needs. With features like noise cancellation, cardioid pickup patterns, and plug-and-play functionality, microphones ensure crisp, accurate, and reliable sound capture for both amateurs and professionals alike."
+                        "A microphone is an essential audio device that captures sound waves and converts them into electrical signals for recording, amplification, or broadcasting. It allows for clear voice communication, high-quality audio recording, and seamless sound transmission in a variety of settings—whether in professional studios, live performances, podcasts, gaming, or virtual meetings. Modern microphones come in various types, including dynamic, condenser, and USB models, each designed to suit different audio needs. With features like noise cancellation, cardioid pickup patterns, and plug-and-play functionality, microphones ensure crisp, accurate, and reliable sound capture for both amateurs and professionals alike.",
+                        "899.99"
                 ),
                 new Item(R.drawable.pc2,
                         "$1999.99",
                         "MSI Gaming PC",
                         "M-123",
                         "Black",
-                        "Dominate every game with the MSI Gaming PC. Equipped with an Intel Core i9-12900K processor, 32GB DDR5 RAM, and an NVIDIA GeForce RTX 4080 GPU, it delivers ultra-smooth gameplay and breathtaking visuals. Store all your games and files on a 2TB NVMe SSD while a 850W power supply ensures stable performance. With a sleek, gamer-focused design and advanced cooling system, the MSI Gaming PC keeps you in the action for hours without compromise."
+                        "Dominate every game with the MSI Gaming PC. Equipped with an Intel Core i9-12900K processor, 32GB DDR5 RAM, and an NVIDIA GeForce RTX 4080 GPU, it delivers ultra-smooth gameplay and breathtaking visuals. Store all your games and files on a 2TB NVMe SSD while a 850W power supply ensures stable performance. With a sleek, gamer-focused design and advanced cooling system, the MSI Gaming PC keeps you in the action for hours without compromise.",
+                        "999.99"
                 )
         ));
         cart = new ArrayList<>();
