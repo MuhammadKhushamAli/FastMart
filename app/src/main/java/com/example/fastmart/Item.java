@@ -10,7 +10,7 @@ public class Item {
     private String discountedPrice;
 
 
-    Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice = "") {
+    Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice) {
         this.imageID = imageID;
         this.price = price;
         this.name = name;
