@@ -19,21 +19,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class login extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     public login() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,7 +50,7 @@ public class login extends Fragment {
                    return;
                }
 
-               SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, context.MODE_PRIVATE);
+               SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
 
                if ((sPref.getString(KeyUtils.emailPrefKey + email, "").equals(email)) &&
                        (sPref.getString(KeyUtils.passPrefKey + email, "").equals(password))) {
