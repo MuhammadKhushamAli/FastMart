@@ -15,17 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastMart">
         <activity
-            android:name=".loginSignup"
+            android:name=".LoginSignupActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".OnBoardScreen"
+            android:name=".OnBoardScreenActivity"
             android:exported="false" />
         <activity
             android:name=".DetailedView"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

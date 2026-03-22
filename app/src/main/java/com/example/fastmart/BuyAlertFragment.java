@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class BuyFragment extends Fragment {
+public class BuyAlertFragment extends Fragment {
     private static final String ARG_MSG = "message";
     private String paramMsg;
     private OnClickListener parentActivity;
@@ -23,12 +23,12 @@ public class BuyFragment extends Fragment {
     }
 
 
-    public BuyFragment() {
+    public BuyAlertFragment() {
         // Required empty public constructor
     }
 
-    public static BuyFragment newInstance(String paramMsg) {
-        BuyFragment fragment = new BuyFragment();
+    public static BuyAlertFragment newInstance(String paramMsg) {
+        BuyAlertFragment fragment = new BuyAlertFragment();
         Bundle args = new Bundle();
         args.putString(ARG_MSG, paramMsg);
         fragment.setArguments(args);

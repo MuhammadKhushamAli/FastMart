@@ -20,7 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
-public class DetailedView extends AppCompatActivity implements BuyFragment.OnClickListener {
+public class DetailedView extends AppCompatActivity implements BuyAlertFragment.OnClickListener {
     ImageView detailedImage;
     ImageView backArrow;
     TextView name;
@@ -32,7 +32,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
     FragmentManager fragManager;
 
-    BuyFragment buyFragment;
+    BuyAlertFragment buyFragment;
     private StringBuilder stringBuilder;
 
     MyApplication app;
@@ -72,7 +72,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
         stringBuilder.append("You are going to buy ").append(itemName).append(" in ").append(itemColor)
                 .append(" color for ").append(itemPrice);
 
-        buyFragment = BuyFragment.newInstance(stringBuilder.toString());
+        buyFragment = BuyAlertFragment.newInstance(stringBuilder.toString());
 
         fragManager.beginTransaction()
                 .add(R.id.confirmation_popup, buyFragment)
@@ -151,7 +151,7 @@ public class DetailedView extends AppCompatActivity implements BuyFragment.OnCli
 
             }
             else {
-                startActivity(new Intent(DetailedView.this, loginSignup.class));
+                startActivity(new Intent(DetailedView.this, LoginSignupActivity.class));
                 finish();
             }
             fragManager.beginTransaction()

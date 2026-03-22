@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
     Animation top_to_current;
     Animation bottom_to_current;
     Animation loading_bar_anim;
@@ -76,15 +75,15 @@ public class SplashScreen extends AppCompatActivity {
     private void moveToHome()
     {
         if (sPref.getBoolean(KeyUtils.isLoggedInKey, false)) {
-            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
         }
         else {
             if(sPref.getBoolean(KeyUtils.isFirstTimeApp, true)) {
-                startActivity(new Intent(SplashScreen.this, OnBoardScreen.class));
+                startActivity(new Intent(SplashScreenActivity.this, OnBoardScreenActivity.class));
             }
             else
             {
-                startActivity(new Intent(SplashScreen.this, loginSignup.class));
+                startActivity(new Intent(SplashScreenActivity.this, LoginSignupActivity.class));
             }
         }
         finish();

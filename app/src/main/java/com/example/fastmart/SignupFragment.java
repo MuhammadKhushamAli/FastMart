@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.renderscript.ScriptGroup;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +26,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class signup extends Fragment {
+public class SignupFragment extends Fragment {
 
-    public signup() {
+    public SignupFragment() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {

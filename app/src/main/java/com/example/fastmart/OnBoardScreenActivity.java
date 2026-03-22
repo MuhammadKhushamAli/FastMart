@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 
-public class OnBoardScreen extends AppCompatActivity {
+public class OnBoardScreenActivity extends AppCompatActivity {
     MaterialButton button;
     SharedPreferences sPref;
 
@@ -28,7 +28,7 @@ public class OnBoardScreen extends AppCompatActivity {
         });
         init();
         button.setOnClickListener((v) -> {
-            startActivity(new Intent(OnBoardScreen.this, loginSignup.class));
+            startActivity(new Intent(OnBoardScreenActivity.this, LoginSignupActivity.class));
             finish();
         });
     }

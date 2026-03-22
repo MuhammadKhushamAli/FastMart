@@ -1,6 +1,5 @@
 package com.example.fastmart;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,11 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class login extends Fragment {
-    public login() {
+public class LoginFragment extends Fragment {
+    public LoginFragment() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
