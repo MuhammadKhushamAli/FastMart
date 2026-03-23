@@ -130,6 +130,7 @@ public class SignupFragment extends Fragment {
             if (!(sPref.getString(KeyUtils.emailPrefKey + email, "").isEmpty()))
             {
                 Toast.makeText(context, "User Already Exists", Toast.LENGTH_LONG).show();
+                return;
             }
 
             if (!password.equals(verifyPassword)) {
