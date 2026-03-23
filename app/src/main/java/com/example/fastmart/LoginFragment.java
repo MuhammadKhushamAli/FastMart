@@ -50,6 +50,12 @@ public class LoginFragment extends Fragment {
 
                SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
 
+               if (sPref.getString(KeyUtils.emailPrefKey + email, "").isEmpty())
+               {
+                   Toast.makeText(context, "User Not Found", Toast.LENGTH_LONG).show();
+                   return;
+               }
+
                if ((sPref.getString(KeyUtils.emailPrefKey + email, "").equals(email)) &&
                        (sPref.getString(KeyUtils.passPrefKey + email, "").equals(password))) {
                    if (!(sPref.edit().putBoolean(KeyUtils.isLoggedInKey, true).commit())) {
