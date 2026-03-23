@@ -127,7 +127,7 @@ public class SignupFragment extends Fragment {
 
             SharedPreferences sPref = activity.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
 
-            if (!(sPref.getString(KeyUtils.emailPrefKey + email, "").isEmpty()))
+            if (!(sPref.getString(KeyUtils.emailPrefKey, "").isEmpty()))
             {
                 Toast.makeText(context, "User Already Exists", Toast.LENGTH_LONG).show();
                 return;
