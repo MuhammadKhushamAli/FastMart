@@ -160,6 +160,14 @@ public class SignupFragment extends Fragment {
             if (sPrefEditor.commit()) {
                 sPrefEditor.putBoolean(KeyUtils.isLoggedInKey, true)
                         .apply();
+                // Storing to Application to avoid fetching from preferences again and again
+                MyApplication app = (MyApplication) context.getApplicationContext();
+                app.name = name;
+                app.email = email;
+                app.dob = dob;
+                app.gender = gender;
+                app.phNo = phNo;
+
                 startActivity(new Intent(activity, MainActivity.class));
                 activity.finish();
             }
