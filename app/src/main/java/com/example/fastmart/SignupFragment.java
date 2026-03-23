@@ -154,7 +154,7 @@ public class SignupFragment extends Fragment {
             sPrefEditor.putString(KeyUtils.dobPrefKey + email, dob);
             sPrefEditor.putString(KeyUtils.genderPrefKey + email, gender);
             sPrefEditor.putString(KeyUtils.phNoPrefKey + email, phNo);
-            sPrefEditor.putString(KeyUtils.emailPrefKey + email, email);
+            sPrefEditor.putString(KeyUtils.emailPrefKey, email);
             sPrefEditor.putString(KeyUtils.passPrefKey + email, password);
 
             if (sPrefEditor.commit()) {
