@@ -125,6 +125,13 @@ public class SignupFragment extends Fragment {
                 return;
             }
 
+            SharedPreferences sPref = activity.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
+
+            if (!(sPref.getString(KeyUtils.emailPrefKey + email, "").isEmpty()))
+            {
+                Toast.makeText(context, "User Already Exists", Toast.LENGTH_LONG).show();
+            }
+
             if (!password.equals(verifyPassword)) {
                 Toast.makeText(context, "Password and Verify Password Must be Equal", Toast.LENGTH_LONG).show();
                 return;
@@ -140,7 +147,6 @@ public class SignupFragment extends Fragment {
             }
 
             // Saving Data
-            SharedPreferences sPref = activity.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
             SharedPreferences.Editor sPrefEditor = sPref.edit();
 
             sPrefEditor.putString(KeyUtils.namePrefKey + email, name);
