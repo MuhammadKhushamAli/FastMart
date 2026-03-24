@@ -16,6 +16,11 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
     Context context;
     ArrayList<Item> itemArrayList;
 
+    public CarouselViewPagerAdapter(Context context, ArrayList<Item> itemArrayList) {
+        this.context = context;
+        this.itemArrayList = itemArrayList;
+    }
+
     @NonNull
     @Override
     public CarouselViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
