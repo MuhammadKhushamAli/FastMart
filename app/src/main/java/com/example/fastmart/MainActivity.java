@@ -13,13 +13,21 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    BottomNavigationView bottomNavigationView;
+    Fragment homeFrag;
+    Fragment browseFrag;
+    Fragment favoriteFrag;
+    Fragment cartFrag;
+    Fragment profileFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +39,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case
+            }
+        });
+
+    }
+
+    private void init() {
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        homeFrag = new HomeFragment();
     }
 }
