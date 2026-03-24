@@ -1,5 +1,6 @@
 package com.example.fastmart;
 
+import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.KeyTimeCycle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -75,6 +77,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void moveToHome()
     {
         if (sPref.getBoolean(KeyUtils.isLoggedInKey, false)) {
+
+            MyApplication app = (MyApplication) getApplicationContext();
+            app.email = sPref.getString(KeyUtils.emailPrefKey, "");
+            String email = app.email;
+            app.name = sPref.getString(KeyUtils.namePrefKey + email, "");
+            app.phNo = sPref.getString(KeyUtils.phNoPrefKey + email, "");
+            app.dob = sPref.getString(KeyUtils.dobPrefKey + email, "");
+            app.gender = sPref.getString(KeyUtils.genderPrefKey + email, "");
+
             startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
         }
         else {
