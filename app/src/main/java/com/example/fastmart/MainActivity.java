@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
 
+    boolean firstTime = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        init();
-
+        init(savedInstanceState);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.home) {
@@ -79,27 +80,60 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void init() {
+    private void init(Bundle savedInstanceState) {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        homeFrag = new HomeFragment();
-        browseFrag = new BrowseFragment();
-        favoriteFrag = new FavoriteFragment();
-        cartFrag = new CartFragment();
-        profileFrag = new ProfileFragment();
-
         fragmentManager = getSupportFragmentManager();
 
-        int currentFragID = R.id.currentFragment;
+        if (savedInstanceState == null) {
+            homeFrag = new HomeFragment();
+            browseFrag = new BrowseFragment();
+            favoriteFrag = new FavoriteFragment();
+            cartFrag = new CartFragment();
+            profileFrag = new ProfileFragment();
 
-        fragmentManager.beginTransaction()
-                .add(currentFragID, homeFrag)
-                .add(currentFragID, browseFrag).hide(browseFrag)
-                .add(currentFragID, favoriteFrag).hide(favoriteFrag)
-                .add(currentFragID, cartFrag).hide(cartFrag)
-                .add(currentFragID, profileFrag).hide(profileFrag)
-                .commit();
-        activeFrag = homeFrag;
-        selectedFrag = null;
-        bottomNavigationView.setSelectedItemId(R.id.home);
+
+            int currentFragID = R.id.currentFragment;
+
+            fragmentManager.beginTransaction()
+                    .add(currentFragID, homeFrag, KeyUtils.homeFragTag)
+                    .add(currentFragID, browseFrag, KeyUtils.browseFragTag).hide(browseFrag)
+                    .add(currentFragID, favoriteFrag, KeyUtils.favoriteFragTag).hide(favoriteFrag)
+                    .add(currentFragID, cartFrag, KeyUtils.cartFragTag).hide(cartFrag)
+                    .add(currentFragID, profileFrag, KeyUtils.profileFragTag).hide(profileFrag)
+                    .commit();
+            activeFrag = homeFrag;
+            selectedFrag = null;
+            bottomNavigationView.setSelectedItemId(R.id.home);
+        }
+        else {
+            homeFrag = fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
+            browseFrag = fragmentManager.findFragmentByTag(KeyUtils.browseFragTag);
+            favoriteFrag = fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
+            cartFrag = fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
+            profileFrag = fragmentManager.findFragmentByTag(KeyUtils.profileFragTag);
+
+
+            if (homeFrag != null && homeFrag.isVisible()) {
+                activeFrag = homeFrag;
+                bottomNavigationView.setSelectedItemId(R.id.home);
+            }
+            else if (browseFrag != null && browseFrag.isVisible()) {
+                activeFrag = browseFrag;
+                bottomNavigationView.setSelectedItemId(R.id.browse);
+            }
+            else if (favoriteFrag != null && favoriteFrag.isVisible()) {
+                activeFrag = favoriteFrag;
+                bottomNavigationView.setSelectedItemId(R.id.favorite);
+            }
+            else if (cartFrag != null && cartFrag.isVisible()) {
+                activeFrag = cartFrag;
+                bottomNavigationView.setSelectedItemId(R.id.cart);
+            }
+            else if (profileFrag != null && profileFrag.isVisible()) {
+                activeFrag = profileFrag;
+                bottomNavigationView.setSelectedItemId(R.id.profile);
+            }
+            selectedFrag = null;
+        }
     }
 }

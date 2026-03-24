@@ -16,4 +16,9 @@ public class KeyUtils {
     public static final String phNoPrefKey = "prefPhNo";
     public static final String genderPrefKey = "prefGender";
     public static final String dobPrefKey = "prefDOB";
+    public static final String homeFragTag = "homeFrag";
+    public static final String browseFragTag = "browseFrag";
+    public static final String favoriteFragTag = "favoriteFrag";
+    public static final String cartFragTag = "cartFrag";
+    public static final String profileFragTag = "profileFrag";
 }

@@ -5,19 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="0dp"
     app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="20dp"
+        android:baselineAligned="false"
         >
-        <ImageView
-            android:id="@+id/carousel_image"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:contentDescription="@string/carousel_image_description"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/carousel_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/carousel_image_description"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
