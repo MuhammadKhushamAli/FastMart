@@ -6,6 +6,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     Fragment favoriteFrag;
     Fragment cartFrag;
     Fragment profileFrag;
+    Fragment activeFrag;
+    Fragment selectedFrag;
+
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +50,28 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.home) {
-                openFragment(homeFrag);
-                return true;
+                selectedFrag = homeFrag;
             }
             else if (id == R.id.browse) {
-                openFragment(browseFrag);
-                return true;
+                selectedFrag = browseFrag;
             }
             else if (id == R.id.favorite) {
-                openFragment(favoriteFrag);
-                return true;
+                selectedFrag = favoriteFrag;
             }
             else if (id == R.id.cart) {
-                openFragment(cartFrag);
-                return true;
+                selectedFrag = cartFrag;
             }
             else if (id == R.id.profile) {
-                openFragment(profileFrag);
+                selectedFrag = profileFrag;
+            }
+            if (selectedFrag != null && selectedFrag != activeFrag)
+            {
+                fragmentManager.beginTransaction()
+                        .hide(activeFrag)
+                        .show(selectedFrag)
+                        .commit();
+                activeFrag = selectedFrag;
+                selectedFrag = null;
                 return true;
             }
             return false;
@@ -75,12 +86,20 @@ public class MainActivity extends AppCompatActivity {
         favoriteFrag = new FavoriteFragment();
         cartFrag = new CartFragment();
         profileFrag = new ProfileFragment();
-    }
 
-    private void openFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.currentFragment, fragment)
+        fragmentManager = getSupportFragmentManager();
+
+        int currentFragID = R.id.currentFragment;
+
+        fragmentManager.beginTransaction()
+                .add(currentFragID, homeFrag)
+                .add(currentFragID, browseFrag).hide(browseFrag)
+                .add(currentFragID, favoriteFrag).hide(favoriteFrag)
+                .add(currentFragID, cartFrag).hide(cartFrag)
+                .add(currentFragID, profileFrag).hide(profileFrag)
                 .commit();
+        activeFrag = homeFrag;
+        selectedFrag = null;
+        bottomNavigationView.setSelectedItemId(R.id.home);
     }
 }
