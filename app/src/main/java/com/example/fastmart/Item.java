@@ -8,9 +8,10 @@ public class Item {
     private String color;
     private String description;
     private String discountedPrice;
+    private String category;
 
 
-    Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice) {
+    Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice, String category) {
         this.imageID = imageID;
         this.price = price;
         this.name = name;
@@ -18,9 +19,12 @@ public class Item {
         this.color = color;
         this.description = description;
         this.discountedPrice = discountedPrice;
+        this.category = category;
     }
-    Item(int imageID, String price, String name, String model, String color, String description) {
-        this(imageID, price, name, model, color, description, "");
+
+
+    Item(int imageID, String price, String name, String model, String color, String description, String category) {
+        this(imageID, price, name, model, color, description, "", category);
     }
 
     public int getImageID() {
@@ -76,5 +80,13 @@ public class Item {
 
     public void setDiscountedPrice(String discountedPrice) {
         this.discountedPrice = discountedPrice;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
