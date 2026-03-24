@@ -41,9 +41,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case
+            int id = item.getItemId();
+            if (id == R.id.home) {
+                openFragment(homeFrag);
+                return true;
             }
+            else if (id == R.id.browse) {
+                openFragment(browseFrag);
+                return true;
+            }
+            else if (id == R.id.favorite) {
+                openFragment(favoriteFrag);
+                return true;
+            }
+            else if (id == R.id.cart) {
+                openFragment(cartFrag);
+                return true;
+            }
+            else if (id == R.id.profile) {
+                openFragment(profileFrag);
+                return true;
+            }
+            return false;
         });
 
     }
@@ -51,5 +70,16 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         homeFrag = new HomeFragment();
+        browseFrag = new BrowseFragment();
+        favoriteFrag = new FavoriteFragment();
+        cartFrag = new CartFragment();
+        profileFrag = new ProfileFragment();
+    }
+
+    private void openFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.currentFragment, fragment)
+                .commit();
     }
 }
