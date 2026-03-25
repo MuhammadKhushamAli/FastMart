@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,27 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         holder.carouselItemOriginalPrice.setText(carouselItem.getPrice());
         holder.carouselItemName.setText(carouselItem.getName());
         holder.carouselItemDesc.setText(carouselItem.getDescription());
+        holder.favBtn.setImageResource(R.drawable.favorite);
+
+        holder.favBtn.setOnClickListener((v) -> {
+            int pos = holder.getAbsoluteAdapterPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                Item itemToBeFav = itemArrayList.get(position);
+                MyApplication app = (MyApplication) context.getApplicationContext();
+
+                if (itemToBeFav.getIsFavorite())
+                {
+                    holder.favBtn.setImageResource(R.drawable.favorite);
+                    app.wishlist.remove(itemToBeFav);
+                    itemToBeFav.setIsFavorite(false);
+                }
+                else {
+                    holder.favBtn.setImageResource(R.drawable.favorite_filled);
+                    app.wishlist.add(itemToBeFav);
+                    itemToBeFav.setIsFavorite(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -51,6 +73,8 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         TextView carouselItemOriginalPrice;
         TextView carouselItemName;
         TextView carouselItemDesc;
+        ImageButton favBtn;
+
 
         public CarouselViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +84,7 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
             carouselItemOriginalPrice = itemView.findViewById(R.id.carousel_original_price);
             carouselItemName = itemView.findViewById(R.id.carousel_item_name);
             carouselItemDesc = itemView.findViewById(R.id.carousel_item_description);
+            favBtn = itemView.findViewById(R.id.fav_img_carousel);
         }
     }
 }

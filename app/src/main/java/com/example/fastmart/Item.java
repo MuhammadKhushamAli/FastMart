@@ -9,6 +9,7 @@ public class Item {
     private String description;
     private String discountedPrice;
     private String category;
+    private Boolean isFavorite;
 
 
     Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice, String category) {
@@ -20,6 +21,7 @@ public class Item {
         this.description = description;
         this.discountedPrice = discountedPrice;
         this.category = category;
+        this.isFavorite = false;
     }
 
 
@@ -88,5 +90,12 @@ public class Item {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+    public Boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(Boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }

@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -39,6 +41,27 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         holder.itemPrice.setText(item.getPrice());
         holder.itemModel.setText(item.getModel());
         holder.itemColor.setText(item.getColor());
+        holder.favBtn.setImageResource(R.drawable.favorite);
+
+        holder.favBtn.setOnClickListener((v) -> {
+            int pos = holder.getAbsoluteAdapterPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                Item itemToBeFav = itemArrayList.get(position);
+                MyApplication app = (MyApplication) context.getApplicationContext();
+
+                if (itemToBeFav.getIsFavorite())
+                {
+                    holder.favBtn.setImageResource(R.drawable.favorite);
+                    app.wishlist.remove(itemToBeFav);
+                    itemToBeFav.setIsFavorite(false);
+                }
+                else {
+                    holder.favBtn.setImageResource(R.drawable.favorite_filled);
+                    app.wishlist.add(itemToBeFav);
+                    itemToBeFav.setIsFavorite(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -52,6 +75,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         TextView itemName;
         TextView itemModel;
         TextView itemColor;
+        ImageButton favBtn;
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +84,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
             itemName = itemView.findViewById(R.id.item_name);
             itemModel = itemView.findViewById(R.id.item_model);
             itemColor = itemView.findViewById(R.id.item_color);
+            favBtn = itemView.findViewById(R.id.fav_img);
         }
     }
 }
