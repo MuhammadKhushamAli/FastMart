@@ -24,11 +24,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements HomeFragment.setOnclickListener {
+    MyApplication app;
     BottomNavigationView bottomNavigationView;
     Fragment homeFrag;
     Fragment browseFrag;
-    Fragment favoriteFrag;
+    FavoriteFragment favoriteFrag;
     Fragment cartFrag;
     Fragment profileFrag;
     Fragment activeFrag;
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(Bundle savedInstanceState) {
+        app = (MyApplication) getApplicationContext();
+
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         fragmentManager = getSupportFragmentManager();
 
@@ -119,10 +123,20 @@ public class MainActivity extends AppCompatActivity {
             activeFrag = fragmentManager.findFragmentByTag(activeStateTag);
             homeFrag = fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
             browseFrag = fragmentManager.findFragmentByTag(KeyUtils.browseFragTag);
-            favoriteFrag = fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
+            favoriteFrag = (FavoriteFragment) fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
             cartFrag = fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
             profileFrag = fragmentManager.findFragmentByTag(KeyUtils.profileFragTag);
             selectedFrag = null;
         }
+    }
+
+    @Override
+    public void addFav(int position) {
+        favoriteFrag.addToWishList(app.items.get(position));
+    }
+
+    @Override
+    public void removeFav(int position) {
+        favoriteFrag.removeFromWishlist(app.items.get(position));
     }
 }

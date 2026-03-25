@@ -14,9 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClickListener{
 
     public HomeFragment() {
+    }
+
+    public interface setOnclickListener {
+        public void addFav(int position);
+        public void removeFav(int position);
+    }
+    setOnclickListener parentActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        parentActivity = (setOnclickListener) context;
     }
 
     @Override
@@ -47,12 +59,22 @@ public class HomeFragment extends Fragment {
                 .replace(R.id.dodFragment, new DealOfDayFragment())
                 .commit();
 
-        ItemsListAdapter itemsListAdapter = new ItemsListAdapter(context, app.items);
+        ItemsListAdapter itemsListAdapter = new ItemsListAdapter(context, app.items, this);
         RecyclerView recyclerView = view.findViewById(R.id.homeItemsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
 
         recyclerView.setAdapter(itemsListAdapter);
 
+    }
+
+    @Override
+    public void favAdd(int position) {
+        parentActivity.addFav(position);
+    }
+
+    @Override
+    public void favRemove(int position) {
+        parentActivity.removeFav(position);
     }
 }

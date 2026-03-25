@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FavoriteFragment"
+    android:orientation="vertical"
     android:layout_margin="10dp"
     >
     <TextView
@@ -18,7 +19,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favorites_section_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         />
 
 </LinearLayout>

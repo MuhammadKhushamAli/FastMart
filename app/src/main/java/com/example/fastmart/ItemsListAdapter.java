@@ -20,10 +20,16 @@ import java.util.ArrayList;
 public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.ItemHolder> {
     Context context;
     ArrayList<Item> itemArrayList;
+    setOnClickListener listener;
 
-    public ItemsListAdapter(Context context, ArrayList<Item> itemArrayList) {
+    public interface setOnClickListener {
+        public void favAdd(int position);
+        public void  favRemove(int position);
+    }
+    public ItemsListAdapter(Context context, ArrayList<Item> itemArrayList, setOnClickListener listener) {
         this.context = context;
         this.itemArrayList = itemArrayList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -52,21 +58,21 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
             if (pos != RecyclerView.NO_POSITION) {
-                Item itemToBeFav = itemArrayList.get(position);
-                MyApplication app = (MyApplication) context.getApplicationContext();
+                Item itemToBeFav = itemArrayList.get(pos);
 
                 if (itemToBeFav.getIsFavorite())
                 {
                     holder.favBtn.setImageResource(R.drawable.favorite);
-                    app.wishlist.remove(itemToBeFav);
                     itemToBeFav.setIsFavorite(false);
+                    listener.favRemove(pos);
                 }
                 else {
                     holder.favBtn.setImageResource(R.drawable.favorite_filled);
-                    app.wishlist.add(itemToBeFav);
                     itemToBeFav.setIsFavorite(true);
+                    listener.favAdd(pos);
                 }
             }
+
         });
     }
 
