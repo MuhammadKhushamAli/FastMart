@@ -21,4 +21,5 @@ public class KeyUtils {
     public static final String favoriteFragTag = "favoriteFrag";
     public static final String cartFragTag = "cartFrag";
     public static final String profileFragTag = "profileFrag";
+    public static final String activeStateTag = "activeState";
 }

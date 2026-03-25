@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
 
     boolean firstTime = false;
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (activeFrag != null) {
+            outState.putString(KeyUtils.activeStateTag, activeFrag.getTag());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,33 +115,13 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.home);
         }
         else {
+            String activeStateTag = savedInstanceState.getString(KeyUtils.activeStateTag);
+            activeFrag = fragmentManager.findFragmentByTag(activeStateTag);
             homeFrag = fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
             browseFrag = fragmentManager.findFragmentByTag(KeyUtils.browseFragTag);
             favoriteFrag = fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
             cartFrag = fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
             profileFrag = fragmentManager.findFragmentByTag(KeyUtils.profileFragTag);
-
-
-            if (homeFrag != null && homeFrag.isVisible()) {
-                activeFrag = homeFrag;
-                bottomNavigationView.setSelectedItemId(R.id.home);
-            }
-            else if (browseFrag != null && browseFrag.isVisible()) {
-                activeFrag = browseFrag;
-                bottomNavigationView.setSelectedItemId(R.id.browse);
-            }
-            else if (favoriteFrag != null && favoriteFrag.isVisible()) {
-                activeFrag = favoriteFrag;
-                bottomNavigationView.setSelectedItemId(R.id.favorite);
-            }
-            else if (cartFrag != null && cartFrag.isVisible()) {
-                activeFrag = cartFrag;
-                bottomNavigationView.setSelectedItemId(R.id.cart);
-            }
-            else if (profileFrag != null && profileFrag.isVisible()) {
-                activeFrag = profileFrag;
-                bottomNavigationView.setSelectedItemId(R.id.profile);
-            }
             selectedFrag = null;
         }
     }
