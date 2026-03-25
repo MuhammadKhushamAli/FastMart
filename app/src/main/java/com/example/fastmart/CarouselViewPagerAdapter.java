@@ -38,7 +38,6 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         holder.carouselItemOriginalPrice.setText(carouselItem.getPrice());
         holder.carouselItemName.setText(carouselItem.getName());
         holder.carouselItemDesc.setText(carouselItem.getDescription());
-        holder.favBtn.setImageResource(R.drawable.favorite);
 
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
@@ -85,6 +84,7 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
             carouselItemName = itemView.findViewById(R.id.carousel_item_name);
             carouselItemDesc = itemView.findViewById(R.id.carousel_item_description);
             favBtn = itemView.findViewById(R.id.fav_img_carousel);
+            favBtn.setImageResource(R.drawable.favorite);
         }
     }
 }

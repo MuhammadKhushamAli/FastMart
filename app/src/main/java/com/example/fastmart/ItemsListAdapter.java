@@ -41,7 +41,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         holder.itemPrice.setText(item.getPrice());
         holder.itemModel.setText(item.getModel());
         holder.itemColor.setText(item.getColor());
-        holder.favBtn.setImageResource(R.drawable.favorite);
 
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
@@ -56,6 +55,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
                     itemToBeFav.setIsFavorite(false);
                 }
                 else {
+                    Toast.makeText(context, position + "," + pos, Toast.LENGTH_LONG).show();
                     holder.favBtn.setImageResource(R.drawable.favorite_filled);
                     app.wishlist.add(itemToBeFav);
                     itemToBeFav.setIsFavorite(true);
@@ -85,6 +85,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
             itemModel = itemView.findViewById(R.id.item_model);
             itemColor = itemView.findViewById(R.id.item_color);
             favBtn = itemView.findViewById(R.id.fav_img);
+            favBtn.setImageResource(R.drawable.favorite);
         }
     }
 }
