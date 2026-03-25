@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
 
         ItemsListAdapter itemsListAdapter = new ItemsListAdapter(context, app.items);
         RecyclerView recyclerView = view.findViewById(R.id.homeItemsRecyclerView);
-
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
 
         recyclerView.setAdapter(itemsListAdapter);
