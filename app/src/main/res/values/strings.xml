@@ -26,7 +26,7 @@
     <string name="carousel_image_description">Carousel Image</string>
     <string name="home_nav">Home</string>
     <string name="browse_nav">Browse</string>
-    <string name="favorite_nav">Favorite</string>
+    <string name="favorite_nav">Favorites</string>
     <string name="cart_nav">Cart</string>
     <string name="profile_nav">Profile</string>
     <string name="favorite_img">isFavorite</string>
