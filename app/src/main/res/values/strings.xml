@@ -14,8 +14,8 @@
     <string name="onBoard_button_text">Get Started -></string>
     <string name="login_signup_page_title">Get Started Now</string>
     <string name="login_signup_page_message">Create an account or login to explore about this app</string>
-    <string name="email_hint">Email</string>
-    <string name="name_hint">Name</string>
+    <string name="email_hint">Email Address</string>
+    <string name="name_hint">Full Name</string>
     <string name="gender_hint">Gender</string>
     <string name="phNo_hint">Phone Number</string>
     <string name="dob_hint">Date of Birth</string>
