@@ -23,7 +23,7 @@
     <string name="login_button_text">Login</string>
     <string name="verifyPassword_hint">Verify Password</string>
     <string name="signup_button_text">Sign Up</string>
-    <string name="carousel_image_description">Carousel Image</string>
+    <string name="image_description">Item Image</string>
     <string name="home_nav">Home</string>
     <string name="browse_nav">Browse</string>
     <string name="favorite_nav">Favorites</string>

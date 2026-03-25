@@ -29,7 +29,7 @@
                     android:id="@+id/carousel_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:contentDescription="@string/carousel_image_description"/>
+                    android:contentDescription="@string/image_description"/>
             </LinearLayout>
 
             <LinearLayout
