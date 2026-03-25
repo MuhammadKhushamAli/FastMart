@@ -42,6 +42,13 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         holder.itemModel.setText(item.getModel());
         holder.itemColor.setText(item.getColor());
 
+        if (item.getIsFavorite()) {
+            holder.favBtn.setImageResource(R.drawable.favorite_filled);
+        }
+        else {
+            holder.favBtn.setImageResource(R.drawable.favorite);
+        }
+
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
             if (pos != RecyclerView.NO_POSITION) {
@@ -84,7 +91,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
             itemModel = itemView.findViewById(R.id.item_model);
             itemColor = itemView.findViewById(R.id.item_color);
             favBtn = itemView.findViewById(R.id.fav_img);
-            favBtn.setImageResource(R.drawable.favorite);
         }
     }
 }
