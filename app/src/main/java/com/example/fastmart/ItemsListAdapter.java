@@ -55,7 +55,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
                     itemToBeFav.setIsFavorite(false);
                 }
                 else {
-                    Toast.makeText(context, position + "," + pos, Toast.LENGTH_LONG).show();
                     holder.favBtn.setImageResource(R.drawable.favorite_filled);
                     app.wishlist.add(itemToBeFav);
                     itemToBeFav.setIsFavorite(true);
