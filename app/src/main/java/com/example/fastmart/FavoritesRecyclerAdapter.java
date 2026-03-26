@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +21,7 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
     setOnClickListener listener;
     public interface setOnClickListener {
         public void notifyChange(Item item);
+        public void addToCart(Item item);
     }
     public FavoritesRecyclerAdapter(Context context, ArrayList<Item> itemArrayList, setOnClickListener listener) {
         this.context = context;
@@ -57,10 +57,16 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
                             itemToBeRemoved.setIsFavorite(false);
                             notifyItemRemoved(pos);
                             listener.notifyChange(itemToBeRemoved);
-
                         })
                         .setNegativeButton("No", (a, b) -> {});
                 builder.create().show();;
+            }
+        });
+
+        holder.favToCart.setOnClickListener(v -> {
+            int pos = holder.getAbsoluteAdapterPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                listener.addToCart(itemArrayList.get(pos));
             }
         });
     }

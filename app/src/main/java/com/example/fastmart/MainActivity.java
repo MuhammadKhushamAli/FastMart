@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     HomeFragment homeFrag;
     Fragment browseFrag;
     FavoriteFragment favoriteFrag;
-    Fragment cartFrag;
+    CartFragment cartFrag;
     Fragment profileFrag;
     Fragment activeFrag;
     Fragment selectedFrag;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
             homeFrag = (HomeFragment) fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
             browseFrag = fragmentManager.findFragmentByTag(KeyUtils.browseFragTag);
             favoriteFrag = (FavoriteFragment) fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
-            cartFrag = fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
+            cartFrag = (CartFragment) fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
             profileFrag = fragmentManager.findFragmentByTag(KeyUtils.profileFragTag);
             selectedFrag = null;
         }
@@ -141,6 +141,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void notifyItemChanged(Item item) {
         homeFrag.notifyChange(item);
+    }
+
+    @Override
+    public void addToCart(Item item) {
+        cartFrag.addToCart(item);
     }
 
 }

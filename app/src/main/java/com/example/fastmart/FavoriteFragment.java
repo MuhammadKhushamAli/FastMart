@@ -25,6 +25,7 @@ implements FavoritesRecyclerAdapter.setOnClickListener{
 
     public interface setOnClickListener {
         public void notifyItemChanged(Item item);
+        public void addToCart(Item item);
     }
 
     public FavoriteFragment() {
@@ -66,13 +67,18 @@ implements FavoritesRecyclerAdapter.setOnClickListener{
         adapter.notifyItemInserted(app.wishlist.size());
     }
     public void removeFromWishlist(Item item) {
-        int pos = app.wishlist.indexOf(item);
         app.wishlist.remove(item);
-        adapter.notifyItemRemoved(pos);
+        int position = app.wishlist.indexOf(item);
+        adapter.notifyItemRemoved(position);
     }
 
     @Override
     public void notifyChange(Item item) {
         parentActivity.notifyItemChanged(item);
+    }
+
+    @Override
+    public void addToCart(Item item) {
+        parentActivity.addToCart(item);
     }
 }

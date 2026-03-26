@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,8 +38,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
         holder.cartItemName.setText(item.getName());
         holder.cartItemModel.setText(item.getModel());
         holder.cartItemColor.setText(item.getColor());
-        holder.cartItemCount.setText(item.getItemsSelected());
-
+        holder.cartItemCount.setText(String.valueOf(item.getItemsSelected()));
         holder.cartIncButton.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
             if (pos != RecyclerView.NO_POSITION) {
@@ -46,6 +46,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
 
                 if (itemToBeInc.getItemsSelected() < itemToBeInc.getItemsAvailable()) {
                     itemToBeInc.incItemsSelected();
+                    notifyItemChanged(pos);
                 }
             }
         });
@@ -56,6 +57,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
 
                 if (itemToBeDec.getItemsSelected() > 1) {
                     itemToBeDec.decItemsSelected();
+                    notifyItemChanged(pos);
                 }
             }
         });

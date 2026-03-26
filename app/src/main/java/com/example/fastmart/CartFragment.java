@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class CartFragment extends Fragment {
+    MyApplication app;
+    CartItemRecyclerAdapter adapter;
+
     public CartFragment() {
     }
 
@@ -32,14 +36,20 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
-        MyApplication app = (MyApplication) context.getApplicationContext();
+        app = (MyApplication) context.getApplicationContext();
 
         RecyclerView recyclerView = view.findViewById(R.id.cart_section_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
-        CarouselViewPagerAdapter adapter = new CarouselViewPagerAdapter(context, app.cart);
+        adapter = new CartItemRecyclerAdapter(context, app.cart);
 
         recyclerView.setAdapter(adapter);
+
+    }
+
+    public void addToCart(Item item) {
+        app.cart.add(item);
+        adapter.notifyItemInserted(app.cart.size());
     }
 }
