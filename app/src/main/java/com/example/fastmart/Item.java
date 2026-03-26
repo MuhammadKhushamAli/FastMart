@@ -10,9 +10,19 @@ public class Item {
     private String discountedPrice;
     private String category;
     private Boolean isFavorite;
+    private int itemsAvailable;
+    private int itemsSelected;
 
 
-    Item(int imageID, String price, String name, String model, String color, String description, String discountedPrice, String category) {
+    Item(int imageID,
+         String price,
+         String name,
+         String model,
+         String color,
+         String description,
+         String discountedPrice,
+         String category,
+         int itemsAvailable) {
         this.imageID = imageID;
         this.price = price;
         this.name = name;
@@ -22,11 +32,28 @@ public class Item {
         this.discountedPrice = discountedPrice;
         this.category = category;
         this.isFavorite = false;
+        this.itemsAvailable = itemsAvailable;
+        this.itemsSelected = 1;
     }
 
 
-    Item(int imageID, String price, String name, String model, String color, String description, String category) {
-        this(imageID, price, name, model, color, description, "", category);
+    Item(int imageID,
+         String price,
+         String name,
+         String model,
+         String color,
+         String description,
+         String category,
+         int itemsAvailable) {
+        this(imageID,
+                price,
+                name,
+                model,
+                color,
+                description,
+                "",
+                category,
+                itemsAvailable);
     }
 
     public int getImageID() {
@@ -97,5 +124,33 @@ public class Item {
 
     public void setIsFavorite(Boolean isFavorite) {
         this.isFavorite = isFavorite;
+    }
+
+    public Boolean getFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public int getItemsAvailable() {
+        return itemsAvailable;
+    }
+
+    public void setItemsAvailable(int itemsAvailable) {
+        this.itemsAvailable = itemsAvailable;
+    }
+
+    public int getItemsSelected() {
+        return itemsSelected;
+    }
+
+    public void incItemsSelected() {
+        itemsSelected++;
+    }
+
+    public void decItemsSelected() {
+        itemsSelected--;
     }
 }
