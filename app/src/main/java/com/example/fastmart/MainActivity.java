@@ -25,10 +25,10 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity
-        implements HomeFragment.setOnclickListener {
+        implements HomeFragment.setOnclickListener, FavoriteFragment.setOnClickListener{
     MyApplication app;
     BottomNavigationView bottomNavigationView;
-    Fragment homeFrag;
+    HomeFragment homeFrag;
     Fragment browseFrag;
     FavoriteFragment favoriteFrag;
     Fragment cartFrag;
@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity
     Fragment selectedFrag;
 
     FragmentManager fragmentManager;
-
-    boolean firstTime = false;
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -121,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         else {
             String activeStateTag = savedInstanceState.getString(KeyUtils.activeStateTag);
             activeFrag = fragmentManager.findFragmentByTag(activeStateTag);
-            homeFrag = fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
+            homeFrag = (HomeFragment) fragmentManager.findFragmentByTag(KeyUtils.homeFragTag);
             browseFrag = fragmentManager.findFragmentByTag(KeyUtils.browseFragTag);
             favoriteFrag = (FavoriteFragment) fragmentManager.findFragmentByTag(KeyUtils.favoriteFragTag);
             cartFrag = fragmentManager.findFragmentByTag(KeyUtils.cartFragTag);
@@ -139,4 +137,10 @@ public class MainActivity extends AppCompatActivity
     public void removeFav(int position) {
         favoriteFrag.removeFromWishlist(app.items.get(position));
     }
+
+    @Override
+    public void notifyItemChanged(Item item) {
+        homeFrag.notifyChange(item);
+    }
+
 }

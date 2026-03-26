@@ -15,12 +15,25 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment
+implements FavoritesRecyclerAdapter.setOnClickListener{
     MyApplication app;
     FavoritesRecyclerAdapter adapter;
     RecyclerView recyclerView;
 
+    setOnClickListener parentActivity;
+
+    public interface setOnClickListener {
+        public void notifyItemChanged(Item item);
+    }
+
     public FavoriteFragment() {
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        parentActivity = (setOnClickListener) context;
     }
 
     @Override
@@ -42,7 +55,7 @@ public class FavoriteFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.favorites_section_recycler);
 
-        adapter = new FavoritesRecyclerAdapter(context, app.wishlist);
+        adapter = new FavoritesRecyclerAdapter(context, app.wishlist, this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
@@ -56,5 +69,10 @@ public class FavoriteFragment extends Fragment {
         int pos = app.wishlist.indexOf(item);
         app.wishlist.remove(item);
         adapter.notifyItemRemoved(pos);
+    }
+
+    @Override
+    public void notifyChange(Item item) {
+        parentActivity.notifyItemChanged(item);
     }
 }

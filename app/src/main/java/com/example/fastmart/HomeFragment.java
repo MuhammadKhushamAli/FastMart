@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClickListener{
+public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClickListener {
+    ItemsListAdapter itemsListAdapter;
+    MyApplication app;
 
     public HomeFragment() {
     }
@@ -46,7 +48,7 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
-        MyApplication app = (MyApplication) context.getApplicationContext();
+        app = (MyApplication) context.getApplicationContext();
 
 
 
@@ -59,7 +61,7 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
                 .replace(R.id.dodFragment, new DealOfDayFragment())
                 .commit();
 
-        ItemsListAdapter itemsListAdapter = new ItemsListAdapter(context, app.items, this);
+        itemsListAdapter = new ItemsListAdapter(context, app.items, this);
         RecyclerView recyclerView = view.findViewById(R.id.homeItemsRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
@@ -76,5 +78,10 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
     @Override
     public void favRemove(int position) {
         parentActivity.removeFav(position);
+    }
+
+    public void notifyChange(Item item) {
+        int position = app.items.indexOf(item);
+        itemsListAdapter.notifyItemChanged(position);
     }
 }

@@ -36,7 +36,7 @@ public class CartFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.cart_section_recycler);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, 1));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
         CarouselViewPagerAdapter adapter = new CarouselViewPagerAdapter(context, app.cart);
 

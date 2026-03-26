@@ -1,5 +1,6 @@
 package com.example.fastmart;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,14 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
     Context context;
     ArrayList<Item> itemArrayList;
 
-    public FavoritesRecyclerAdapter(Context context, ArrayList<Item> itemArrayList) {
+    setOnClickListener listener;
+    public interface setOnClickListener {
+        public void notifyChange(Item item);
+    }
+    public FavoritesRecyclerAdapter(Context context, ArrayList<Item> itemArrayList, setOnClickListener listener) {
         this.context = context;
         this.itemArrayList = itemArrayList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,6 +44,25 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
         holder.favItemName.setText(item.getName());
         holder.favItemModel.setText(item.getModel());
         holder.favItemColor.setText(item.getColor());
+        holder.favMore.setOnClickListener(v -> {
+            int pos = holder.getAbsoluteAdapterPosition();
+
+            if (pos != RecyclerView.NO_POSITION) {
+                Item itemToBeRemoved = itemArrayList.get(pos);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                        .setTitle("Do you want to delete this product from favorites?")
+                        .setPositiveButton("Yes", (a, b) -> {
+                            itemArrayList.remove(itemToBeRemoved);
+                            itemToBeRemoved.setIsFavorite(false);
+                            notifyItemRemoved(pos);
+                            listener.notifyChange(itemToBeRemoved);
+
+                        })
+                        .setNegativeButton("No", (a, b) -> {});
+                builder.create().show();;
+            }
+        });
     }
 
     @Override
