@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 public class Item {
+    private int id;
     private int imageID;
     private String price;
     private String name;
@@ -14,7 +15,8 @@ public class Item {
     private int itemsSelected;
 
 
-    Item(int imageID,
+    Item(int id,
+         int imageID,
          String price,
          String name,
          String model,
@@ -23,6 +25,7 @@ public class Item {
          String discountedPrice,
          String category,
          int itemsAvailable) {
+        this.id = id;
         this.imageID = imageID;
         this.price = price;
         this.name = name;
@@ -37,7 +40,8 @@ public class Item {
     }
 
 
-    Item(int imageID,
+    Item(int id,
+         int imageID,
          String price,
          String name,
          String model,
@@ -45,7 +49,8 @@ public class Item {
          String description,
          String category,
          int itemsAvailable) {
-        this(imageID,
+        this(id,
+                imageID,
                 price,
                 name,
                 model,
@@ -156,5 +161,13 @@ public class Item {
 
     public void setItemsSelected(int itemsSelected) {
         this.itemsSelected = itemsSelected;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
