@@ -31,4 +31,6 @@
     <string name="profile_nav">Profile</string>
     <string name="favorite_img">isFavorite</string>
     <string name="more_icon_desc">More</string>
+    <string name="inc_icon_desc">Increment</string>
+    <string name="dec_icon_desc">Decrement</string>
 </resources>
