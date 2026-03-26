@@ -25,7 +25,9 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity
-        implements HomeFragment.setOnclickListener, FavoriteFragment.setOnClickListener{
+        implements HomeFragment.setOnclickListener,
+        FavoriteFragment.setOnClickListener,
+        DealOfDayFragment.setOnClickListener{
     MyApplication app;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFrag;
@@ -148,4 +150,13 @@ public class MainActivity extends AppCompatActivity
         cartFrag.addToCart(item);
     }
 
+    @Override
+    public void addToFav(Item item) {
+        favoriteFrag.addToWishList(item);
+    }
+
+    @Override
+    public void removeFromFav(Item item) {
+        favoriteFrag.removeFromWishlist(item);
+    }
 }

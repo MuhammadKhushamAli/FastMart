@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClickListener {
     ItemsListAdapter itemsListAdapter;
     MyApplication app;
+    DealOfDayFragment dealOfDayFragment;
 
     public HomeFragment() {
     }
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
         app = (MyApplication) context.getApplicationContext();
-
+        dealOfDayFragment = new DealOfDayFragment();
 
 
         TextView homeWelcomeTextField = view.findViewById(R.id.welcomeText);
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
 
         getChildFragmentManager()
                 .beginTransaction()
-                .replace(R.id.dodFragment, new DealOfDayFragment())
+                .replace(R.id.dodFragment, dealOfDayFragment)
                 .commit();
 
         itemsListAdapter = new ItemsListAdapter(context, app.items, this);
@@ -81,7 +82,12 @@ public class HomeFragment extends Fragment implements ItemsListAdapter.setOnClic
     }
 
     public void notifyChange(Item item) {
-        int position = app.items.indexOf(item);
-        itemsListAdapter.notifyItemChanged(position);
+        if (app.items.contains(item)) {
+            int position = app.items.indexOf(item);
+            itemsListAdapter.notifyItemChanged(position);
+        }
+        else {
+            dealOfDayFragment.notifyItemChanged(item);
+        }
     }
 }

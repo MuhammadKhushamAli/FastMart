@@ -16,10 +16,15 @@ import java.util.ArrayList;
 public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewPagerAdapter.CarouselViewHolder> {
     Context context;
     ArrayList<Item> itemArrayList;
-
-    public CarouselViewPagerAdapter(Context context, ArrayList<Item> itemArrayList) {
+    setOnCLickListener listener;
+    public interface setOnCLickListener {
+        public void addToFav(Item item);
+        public void removeFromFav(Item item);
+    }
+    public CarouselViewPagerAdapter(Context context, ArrayList<Item> itemArrayList, setOnCLickListener listener) {
         this.context = context;
         this.itemArrayList = itemArrayList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -43,18 +48,17 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
             int pos = holder.getAbsoluteAdapterPosition();
             if (pos != RecyclerView.NO_POSITION) {
                 Item itemToBeFav = itemArrayList.get(position);
-                MyApplication app = (MyApplication) context.getApplicationContext();
 
                 if (itemToBeFav.getIsFavorite())
                 {
                     holder.favBtn.setImageResource(R.drawable.favorite);
-                    app.wishlist.remove(itemToBeFav);
                     itemToBeFav.setIsFavorite(false);
+                    listener.removeFromFav(itemToBeFav);
                 }
                 else {
                     holder.favBtn.setImageResource(R.drawable.favorite_filled);
-                    app.wishlist.add(itemToBeFav);
                     itemToBeFav.setIsFavorite(true);
+                    listener.addToFav(itemToBeFav);
                 }
             }
         });
