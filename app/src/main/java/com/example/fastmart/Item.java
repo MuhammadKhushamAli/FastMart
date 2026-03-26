@@ -153,4 +153,8 @@ public class Item {
     public void decItemsSelected() {
         itemsSelected--;
     }
+
+    public void setItemsSelected(int itemsSelected) {
+        this.itemsSelected = itemsSelected;
+    }
 }
