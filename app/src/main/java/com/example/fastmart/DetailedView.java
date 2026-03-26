@@ -80,9 +80,10 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
                 .commit();
 
         buyButton.setOnClickListener((v) -> {
-            fragManager.beginTransaction()
-                    .show(buyFragment)
-                    .commit();
+//            fragManager.beginTransaction()
+//                    .show(buyFragment)
+//                    .commit();
+
         });
         backArrow.setOnClickListener((v) -> {
             finish();

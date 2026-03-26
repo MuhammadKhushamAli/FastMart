@@ -22,7 +22,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         items = new ArrayList<>(Arrays.asList(
-                new Item(R.drawable.headphone1,
+                new Item(1,
+                        R.drawable.headphone1,
                         "$199.99", "JBL Headset",
                         "J-123",
                         "Off-White",
@@ -30,7 +31,8 @@ public class MyApplication extends Application {
                         "Headset",
                         10
                 ),
-                new Item(R.drawable.headphone2,
+                new Item(2,
+                        R.drawable.headphone2,
                         "$299.99",
                         "Audionic Headset",
                         "A-123",
@@ -39,7 +41,8 @@ public class MyApplication extends Application {
                         "Headset",
                         20
                 ),
-                new Item(R.drawable.keyboard1,
+                new Item(3,
+                        R.drawable.keyboard1,
                         "$49.99",
                         "HP Keyboard",
                         "H-123",
@@ -48,7 +51,8 @@ public class MyApplication extends Application {
                         "Keyboard",
                         30
                 ),
-                new Item(R.drawable.headphone3,
+                new Item(4,
+                        R.drawable.headphone3,
                         "$399.99",
                         "Ronin Headset",
                         "R-123",
@@ -57,7 +61,8 @@ public class MyApplication extends Application {
                         "Headset",
                         10
                 ),
-                new Item(R.drawable.pc3,
+                new Item(5,
+                        R.drawable.pc3,
                         "$599.99",
                         "Acer Gaming PC",
                         "Ac-123",
@@ -66,7 +71,8 @@ public class MyApplication extends Application {
                         "PC",
                         5
                 ),
-                new Item(R.drawable.headphone4,
+                new Item(6,
+                        R.drawable.headphone4,
                         "$499.99",
                         "JBL Headset",
                         "J-567",
@@ -75,7 +81,8 @@ public class MyApplication extends Application {
                         "Headset",
                         60
                 ),
-                new Item(R.drawable.pc1,
+                new Item(7,
+                        R.drawable.pc1,
                         "$999.99",
                         "Asus Gaming PC",
                         "As-123",
@@ -84,7 +91,8 @@ public class MyApplication extends Application {
                         "PC",
                         30
                 ),
-                new Item(R.drawable.keyboard2,
+                new Item(8,
+                        R.drawable.keyboard2,
                         "$99.99",
                         "Redragon Gaming Keyboard",
                         "R-123",
@@ -93,7 +101,8 @@ public class MyApplication extends Application {
                         "Keyboard",
                         7
                 ),
-                new Item(R.drawable.pc2,
+                new Item(9,
+                        R.drawable.pc2,
                         "$1999.99",
                         "MSI Gaming PC",
                         "M-123",
@@ -104,7 +113,8 @@ public class MyApplication extends Application {
                 )
         ));
         dodItems = new ArrayList<>(Arrays.asList(
-                new Item(R.drawable.microphone,
+                new Item(10,
+                        R.drawable.microphone,
                         "$999.99",
                         "Microphone",
                         "123-A",
@@ -114,7 +124,8 @@ public class MyApplication extends Application {
                         "Microphone",
                         70
                 ),
-                new Item(R.drawable.pc2,
+                new Item(11,
+                        R.drawable.pc2,
                         "$1999.99",
                         "MSI Gaming PC",
                         "M-123",
