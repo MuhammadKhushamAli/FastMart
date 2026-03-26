@@ -65,16 +65,10 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
         holder.cartMoreButton.setOnClickListener(v -> {
             int pos = holder.getAbsoluteAdapterPosition();
             if (pos != RecyclerView.NO_POSITION) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                        .setTitle("Do you want to delete this product from cart?")
-                        .setPositiveButton("Yes", (a, b) -> {
-                            Item itemToBeRemoved = itemArrayList.get(pos);
-                            itemToBeRemoved.setItemsSelected(1);
-                            itemArrayList.remove(pos);
-                            notifyItemRemoved(pos);
-                        })
-                        .setNegativeButton("No", (a, b) -> {});
-                 builder.create().show();
+                Item itemToBeRemoved = itemArrayList.get(pos);
+                itemToBeRemoved.setItemsSelected(1);
+                itemArrayList.remove(pos);
+                notifyItemRemoved(pos);
             }
         });
     }
