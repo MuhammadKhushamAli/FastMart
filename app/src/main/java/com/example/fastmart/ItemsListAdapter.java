@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,16 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
             }
 
         });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailedView.class);
+            intent.putExtra(KeyUtils.imageIDKey, item.getImageID())
+                    .putExtra(KeyUtils.nameKey, item.getName())
+                    .putExtra(KeyUtils.descriptionKey, item.getDescription())
+                    .putExtra(KeyUtils.colorKey, item.getColor())
+                    .putExtra(KeyUtils.modelKey, item.getModel())
+                    .putExtra(KeyUtils.priceKey, item.getPrice());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -97,6 +108,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
             itemModel = itemView.findViewById(R.id.item_model);
             itemColor = itemView.findViewById(R.id.item_color);
             favBtn = itemView.findViewById(R.id.fav_img);
+
         }
     }
 }
