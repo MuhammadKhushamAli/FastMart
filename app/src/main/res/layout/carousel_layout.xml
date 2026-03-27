@@ -6,6 +6,7 @@
     app:cardElevation="0dp"
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
+    android:backgroundTint="?deal_of_day_background_color"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,6 +46,7 @@
                     android:id="@+id/carousel_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     />
 
                 <LinearLayout
@@ -78,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
+                    android:textColor="@color/white"
                     />
 
                 <TextView
@@ -86,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:textColor="@color/white"
                     />
             </LinearLayout>
         </LinearLayout>
