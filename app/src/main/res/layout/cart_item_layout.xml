@@ -104,6 +104,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/more"
             android:contentDescription="@string/more_icon_desc"
+            android:background="@drawable/rounded_more_button"
+            android:layout_marginBottom="10dp"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,11 +119,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dec"
                 android:contentDescription="@string/dec_icon_desc"
+                android:background="@drawable/rounded_dec_button"
                 />
             <TextView
                 android:id="@+id/cart_item_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="7dp"
                 />
             <ImageButton
                 android:id="@+id/cart_inc"
@@ -129,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add"
                 android:contentDescription="@string/inc_icon_desc"
+                android:background="@drawable/rounded_inc_button"
                 />
 
         </LinearLayout>
