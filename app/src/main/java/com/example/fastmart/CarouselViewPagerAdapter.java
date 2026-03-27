@@ -2,6 +2,7 @@ package com.example.fastmart;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,17 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         Item carouselItem = itemArrayList.get(position);
         holder.carouselItemImage.setImageResource(carouselItem.getImageID());
         holder.carouselItemCategory.setText(carouselItem.getCategory());
-        holder.carouselItemDiscountedPrice.setText("$ " + carouselItem.getDiscountedPrice());
-        holder.carouselItemOriginalPrice.setText("$ " + carouselItem.getPrice());
+        String discountedPrice = "$ " + carouselItem.getDiscountedPrice();
+        holder.carouselItemDiscountedPrice.setText(discountedPrice);
+        String originalPrice = "$ " + carouselItem.getPrice();
+        holder.carouselItemOriginalPrice.setText(originalPrice);
         holder.carouselItemName.setText(carouselItem.getName());
         holder.carouselItemDesc.setText(carouselItem.getDescription());
+
+        if (carouselItem.getDiscountedPrice() != 0) {
+            holder.carouselItemOriginalPrice.setPaintFlags(
+                    holder.carouselItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
 
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
