@@ -10,6 +10,7 @@ public class MyApplication extends Application {
     public ArrayList<Item> dodItems;
     public ArrayList<Item> cart;
     public ArrayList<Item> wishlist;
+    public ArrayList<String> previousSearch;
 
     public String name;
     public String email;
@@ -138,5 +139,6 @@ public class MyApplication extends Application {
         ));
         cart = new ArrayList<>();
         wishlist = new ArrayList<>();
+        previousSearch = new ArrayList<>();
     }
 }
