@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,5 +80,34 @@ public class DealOfDayFragment extends Fragment
     public void notifyItemChanged(Item item) {
         viewPager2Carousel.setAdapter(null);
         viewPager2Carousel.setAdapter(carouselViewPagerAdapter);
+    }
+
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private int currentPage = 1;
+
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (viewPager2Carousel != null && viewPager2Carousel.getAdapter() != null) {
+                int countPages = viewPager2Carousel.getAdapter().getItemCount();
+                if (countPages == 0) return;
+                currentPage = currentPage % countPages;
+                viewPager2Carousel.setCurrentItem(currentPage, true);
+                currentPage++;
+                handler.postDelayed(runnable, 3000);
+            }
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, 3000);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
     }
 }
