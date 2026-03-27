@@ -8,4 +8,5 @@
     <color name="light_greyish">#928E8E</color>
     <color name="trans_bg_shade_dark">#69000000</color>
     <color name="trans_bg_shade_light">#81C7BCBC</color>
+    <color name="blue">#0000FF</color>
 </resources>

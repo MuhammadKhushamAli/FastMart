@@ -37,4 +37,7 @@
     <string name="shipping_heading">Shipping</string>
     <string name="total_heading">Total</string>
     <string name="logout_btn_text">Logout</string>
+    <string name="search_frag_heading">Search</string>
+    <string name="recent_searches_heading">Recent Searches</string>
+    <string name="clear_all">Clear All</string>
 </resources>
