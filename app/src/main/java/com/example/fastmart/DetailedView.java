@@ -20,6 +20,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.ArrayList;
+
 public class DetailedView extends AppCompatActivity implements BuyAlertFragment.OnClickListener {
     ImageView detailedImage;
     ImageView backArrow;
@@ -49,41 +51,27 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
             return insets;
         });
 
-        Intent i = getIntent();
-
-        int imageID = i.getIntExtra(KeyUtils.imageIDKey, 0);
-        String itemName = i.getStringExtra(KeyUtils.nameKey);
-        String itemPrice = i.getStringExtra(KeyUtils.priceKey);
-        String itemDesc = i.getStringExtra(KeyUtils.descriptionKey);
-        String itemModel = i.getStringExtra(KeyUtils.modelKey);
-        String itemColor = i.getStringExtra(KeyUtils.colorKey);
+        Item item = getIntent().getParcelableExtra(KeyUtils.itemKey);
 
         initAndSetup(
-                imageID,
-                itemName,
-                itemPrice,
-                itemDesc,
-                itemModel,
-                itemColor
+                item.getImageID(),
+                item.getName(),
+                item.getPrice(),
+                item.getDescription(),
+                item.getModel(),
+                item.getColor()
         );
 
-        fragManager = getSupportFragmentManager();
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("You are going to buy ").append(itemName).append(" in ").append(itemColor)
-                .append(" color for ").append(itemPrice);
-
-        buyFragment = BuyAlertFragment.newInstance(stringBuilder.toString());
-
-        fragManager.beginTransaction()
-                .add(R.id.confirmation_popup, buyFragment)
-                .hide(buyFragment)
-                .commit();
 
         buyButton.setOnClickListener((v) -> {
-//            fragManager.beginTransaction()
-//                    .show(buyFragment)
-//                    .commit();
-
+            if (app.cart.contains(item)) {
+                item.incItemsSelected();
+            }
+            else {
+                app.cart.add(item);
+            }
+            Toast.makeText(this, item.getName() + " Added to Cart", Toast.LENGTH_LONG).show();
+            finish();
         });
         backArrow.setOnClickListener((v) -> {
             finish();
@@ -93,7 +81,7 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
     private void initAndSetup(
             int imageID,
             String itemName,
-            String itemPrice,
+            Float itemPrice,
             String itemDesc,
             String itemModel,
             String itemColor
@@ -113,7 +101,7 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
 
         detailedImage.setImageResource(imageID);
         name.setText(itemName);
-        price.setText(itemPrice);
+        price.setText("$ " + itemPrice);
         description.setText(itemDesc);
         model.setText(itemModel);
         color.setText(itemColor);

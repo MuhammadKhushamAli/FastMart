@@ -77,12 +77,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         });
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailedView.class);
-            intent.putExtra(KeyUtils.imageIDKey, item.getImageID())
-                    .putExtra(KeyUtils.nameKey, item.getName())
-                    .putExtra(KeyUtils.descriptionKey, item.getDescription())
-                    .putExtra(KeyUtils.colorKey, item.getColor())
-                    .putExtra(KeyUtils.modelKey, item.getModel())
-                    .putExtra(KeyUtils.priceKey, item.getPrice());
+            intent.putExtra(KeyUtils.itemKey, item);
             context.startActivity(intent);
         });
     }

@@ -65,12 +65,7 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         });
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailedView.class);
-            intent.putExtra(KeyUtils.imageIDKey, carouselItem.getImageID())
-                    .putExtra(KeyUtils.nameKey, carouselItem.getName())
-                    .putExtra(KeyUtils.descriptionKey, carouselItem.getDescription())
-                    .putExtra(KeyUtils.colorKey, carouselItem.getColor())
-                    .putExtra(KeyUtils.modelKey, carouselItem.getModel())
-                    .putExtra(KeyUtils.priceKey, carouselItem.getPrice());
+            intent.putExtra(KeyUtils.itemKey, carouselItem);
             context.startActivity(intent);
         });
     }

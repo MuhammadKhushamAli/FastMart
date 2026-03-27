@@ -1,6 +1,11 @@
 package com.example.fastmart;
 
-public class Item {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Item implements Parcelable {
     private int id;
     private int imageID;
     private float price;
@@ -61,6 +66,17 @@ public class Item {
                 itemsAvailable);
     }
 
+    protected Item(Parcel in) {
+        this.name = in.readString();
+        this.model = in.readString();
+        this.color = in.readString();
+        this.description = in.readString();
+        this.price = in.readFloat();
+        this.discountedPrice = in.readFloat();
+        this.imageID = in.readInt();
+        this.itemsAvailable = in.readInt();
+        this.itemsSelected = in.readInt();
+    }
     public int getImageID() {
         return imageID;
     }
@@ -170,4 +186,34 @@ public class Item {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(model);
+        parcel.writeString(color);
+        parcel.writeString(description);
+        parcel.writeFloat(price);
+        parcel.writeFloat(discountedPrice);
+        parcel.writeInt(imageID);
+        parcel.writeInt(itemsAvailable);
+        parcel.writeInt(itemsSelected);
+    }
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+
+        @Override
+        public Item createFromParcel(Parcel parcel) {
+            return new Item(parcel);
+        }
+
+        @Override
+        public Item[] newArray(int i) {
+            return new Item[i];
+        }
+    };
 }
