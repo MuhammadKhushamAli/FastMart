@@ -33,4 +33,7 @@
     <string name="more_icon_desc">More</string>
     <string name="inc_icon_desc">Increment</string>
     <string name="dec_icon_desc">Decrement</string>
+    <string name="checkout_btn_text">Checkout</string>
+    <string name="shipping_heading">Shipping</string>
+    <string name="total_heading">Total</string>
 </resources>

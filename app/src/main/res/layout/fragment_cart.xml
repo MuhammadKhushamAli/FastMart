@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    tools:context=".CartFragment"
-    >
+    tools:context=".CartFragment">
     <TextView
+        android:id="@+id/cart_heading_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cart_nav"
@@ -15,11 +15,75 @@
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_section_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/cart_heading_section"
+        android:layout_above="@id/cart_checkout_section"
         />
+    <LinearLayout
+        android:id="@+id/cart_checkout_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/shipping_heading"
+                android:textSize="11sp"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/shipping_in_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shipping_heading"
+                android:textSize="11sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
 
-</LinearLayout>
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/total_heading"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/total_price_in_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="11sp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cart_checkout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/checkout_btn_text"
+            app:cornerRadius="10dp"
+            android:backgroundTint="?button_bg_color"
+            />
+    </LinearLayout>
+</RelativeLayout>
