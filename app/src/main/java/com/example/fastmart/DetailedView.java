@@ -87,8 +87,6 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
             String itemColor
     )
     {
-
-
         detailedImage = findViewById(R.id.detailed_item_image);
         name = findViewById(R.id.detailed_item_name);
         price = findViewById(R.id.detailed_item_price);
