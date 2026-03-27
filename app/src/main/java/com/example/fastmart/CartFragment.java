@@ -49,7 +49,13 @@ public class CartFragment extends Fragment {
     }
 
     public void addToCart(Item item) {
-        app.cart.add(item);
-        adapter.notifyItemInserted(app.cart.size());
+        if (app.cart.contains(item)) {
+            item.incItemsSelected();
+            adapter.notifyItemChanged(app.cart.indexOf(item));
+        }
+        else {
+            app.cart.add(item);
+            adapter.notifyItemInserted(app.cart.size());
+        }
     }
 }
