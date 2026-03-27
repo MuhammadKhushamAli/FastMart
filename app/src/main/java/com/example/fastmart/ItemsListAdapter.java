@@ -45,7 +45,8 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.Item
         Item item = itemArrayList.get(position);
         holder.itemImage.setImageResource(item.getImageID());
         holder.itemName.setText(item.getName());
-        holder.itemPrice.setText("$ " + item.getPrice());
+        String priceStr = "$ " + item.getPrice();
+        holder.itemPrice.setText(priceStr);
         holder.itemModel.setText(item.getModel());
         holder.itemColor.setText(item.getColor());
 
