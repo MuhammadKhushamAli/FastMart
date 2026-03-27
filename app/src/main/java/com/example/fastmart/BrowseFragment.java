@@ -17,6 +17,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -88,6 +89,7 @@ public class BrowseFragment extends ListFragment {
                     app.previousSearch.add(query);
                     adapter.notifyDataSetChanged();
                 }
+                searchResultsInItems(query);
                 return true;
             }
 
@@ -113,5 +115,25 @@ public class BrowseFragment extends ListFragment {
         super.onPause();
         sharedPreferences.edit().putStringSet(KeyUtils.prevSearchHistoryPrefKey + app.email, new LinkedHashSet<>(app.previousSearch))
                 .apply();
+    }
+
+    private void searchResultsInItems(String query) {
+        ArrayList<Item> items = app.items;
+        query = query.toLowerCase();
+        Context context = requireContext();
+
+        for (var item : items) {
+            if (item.getName().toLowerCase().contains(query) ||
+                    item.getColor().toLowerCase().contains(query) ||
+                    item.getModel().toLowerCase().contains(query) ||
+                    item.getDescription().toLowerCase().contains(query) ||
+                    item.getCategory().toLowerCase().contains(query)
+            ) {
+
+                Toast.makeText(context, item.getName() + " Found", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+        Toast.makeText(context, "No Item Found", Toast.LENGTH_LONG).show();
     }
 }
