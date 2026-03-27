@@ -18,10 +18,15 @@ import java.util.ArrayList;
 public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecyclerAdapter.CartItemViewHolder> {
     Context context;
     ArrayList<Item> itemArrayList;
+    setOnClickListener listener;
 
-    public CartItemRecyclerAdapter(Context context, ArrayList<Item> itemArrayList) {
+    public interface setOnClickListener {
+        public void calculateTotal();
+    }
+    public CartItemRecyclerAdapter(Context context, ArrayList<Item> itemArrayList, setOnClickListener listener) {
         this.context = context;
         this.itemArrayList = itemArrayList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,7 +40,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
         Item item = itemArrayList.get(position);
         holder.cartItemImage.setImageResource(item.getImageID());
-        holder.cartItemPrice.setText(item.getPrice());
+        holder.cartItemPrice.setText("$ " + item.getPrice());
         holder.cartItemName.setText(item.getName());
         holder.cartItemModel.setText(item.getModel());
         holder.cartItemColor.setText(item.getColor());
@@ -71,6 +76,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
                 notifyItemRemoved(pos);
             }
         });
+        listener.calculateTotal();
     }
 
     @Override

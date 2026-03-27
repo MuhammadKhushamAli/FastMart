@@ -12,13 +12,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class CartFragment extends Fragment {
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+
+public class CartFragment extends Fragment
+        implements CartItemRecyclerAdapter.setOnClickListener  {
     MyApplication app;
     CartItemRecyclerAdapter adapter;
+    TextView shippingValueField;
+    TextView totalPriceField;
+    MaterialButton checkoutBtn;
+    float shippingCost;
 
     public CartFragment() {
+        shippingCost = 0.00f;
     }
 
     @Override
@@ -37,17 +48,19 @@ public class CartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
         app = (MyApplication) context.getApplicationContext();
+        shippingValueField = view.findViewById(R.id.shipping_in_cart);
+        shippingValueField.setText("$ " + shippingCost);
+
+        totalPriceField = view.findViewById(R.id.total_price_in_cart);
 
         RecyclerView recyclerView = view.findViewById(R.id.cart_section_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
-        adapter = new CartItemRecyclerAdapter(context, app.cart);
+        adapter = new CartItemRecyclerAdapter(context, app.cart, this);
 
         recyclerView.setAdapter(adapter);
-
     }
-
     public void addToCart(Item item) {
         if (app.cart.contains(item)) {
             item.incItemsSelected();
@@ -57,5 +70,20 @@ public class CartFragment extends Fragment {
             app.cart.add(item);
             adapter.notifyItemInserted(app.cart.size());
         }
+    }
+
+    @Override
+    public void calculateTotal() {
+        float totalPrice = 0.00f;
+        ArrayList<Item> cart = app.cart;
+        for (var item: cart) {
+            if (item.getDiscountedPrice() != 0.00f) {
+                totalPrice += item.getDiscountedPrice() * item.getItemsSelected();
+            }
+            else {
+                totalPrice += item.getPrice() * item.getItemsSelected();
+            }
+        }
+        totalPriceField.setText("$ " + totalPrice);
     }
 }

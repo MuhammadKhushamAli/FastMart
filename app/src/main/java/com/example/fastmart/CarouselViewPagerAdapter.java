@@ -40,8 +40,8 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         Item carouselItem = itemArrayList.get(position);
         holder.carouselItemImage.setImageResource(carouselItem.getImageID());
         holder.carouselItemCategory.setText(carouselItem.getCategory());
-        holder.carouselItemDiscountedPrice.setText(carouselItem.getDiscountedPrice());
-        holder.carouselItemOriginalPrice.setText(carouselItem.getPrice());
+        holder.carouselItemDiscountedPrice.setText("$ " + carouselItem.getDiscountedPrice());
+        holder.carouselItemOriginalPrice.setText("$ " + carouselItem.getPrice());
         holder.carouselItemName.setText(carouselItem.getName());
         holder.carouselItemDesc.setText(carouselItem.getDescription());
 

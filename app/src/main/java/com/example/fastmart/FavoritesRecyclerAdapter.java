@@ -40,7 +40,7 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
     public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
         Item item = itemArrayList.get(position);
         holder.favItemImg.setImageResource(item.getImageID());
-        holder.favItemPrice.setText(item.getPrice());
+        holder.favItemPrice.setText("$ " + item.getPrice());
         holder.favItemName.setText(item.getName());
         holder.favItemModel.setText(item.getModel());
         holder.favItemColor.setText(item.getColor());
