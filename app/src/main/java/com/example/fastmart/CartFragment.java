@@ -78,9 +78,14 @@ public class CartFragment extends Fragment
         });
     }
     public void addToCart(Item item) {
-        if (app.cart.contains(item)) {
-            item.incItemsSelected();
-            adapter.notifyItemChanged(app.cart.indexOf(item));
+        int id = item.getId();
+        Item itemToBeCarted = app.cart.stream().filter(cartItem -> cartItem.getId() == id)
+                        .findFirst()
+                        .orElse(null);
+
+        if (itemToBeCarted != null) {
+            itemToBeCarted.incItemsSelected();
+            adapter.notifyItemChanged(app.cart.indexOf(itemToBeCarted));
         }
         else {
             app.cart.add(item);
@@ -101,6 +106,12 @@ public class CartFragment extends Fragment
             }
         }
         totalPriceField.setText("$ " + totalPrice);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     private void onCheckoutHandler() {

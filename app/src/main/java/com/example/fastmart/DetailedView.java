@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
-public class DetailedView extends AppCompatActivity implements BuyAlertFragment.OnClickListener {
+public class DetailedView extends AppCompatActivity {
     ImageView detailedImage;
     ImageView backArrow;
     TextView name;
@@ -31,12 +31,6 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
     TextView model;
     TextView color;
     Button buyButton;
-
-    FragmentManager fragManager;
-
-    BuyAlertFragment buyFragment;
-    private StringBuilder stringBuilder;
-
     MyApplication app;
 
 
@@ -52,6 +46,7 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
         });
 
         Item item = getIntent().getParcelableExtra(KeyUtils.itemKey);
+        int id = item.getId();
 
         initAndSetup(
                 item.getImageID(),
@@ -64,11 +59,15 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
 
 
         buyButton.setOnClickListener((v) -> {
-            if (app.cart.contains(item)) {
-                item.incItemsSelected();
+            Item itemToBeCarted = app.cart.stream().filter(itemInCart -> itemInCart.getId() == id)
+                    .findFirst()
+                    .orElse(null);
+
+            if (itemToBeCarted == null) {
+                app.cart.add(item);
             }
             else {
-                app.cart.add(item);
+                itemToBeCarted.incItemsSelected();
             }
             Toast.makeText(this, item.getName() + " Added to Cart", Toast.LENGTH_LONG).show();
             finish();
@@ -99,58 +98,10 @@ public class DetailedView extends AppCompatActivity implements BuyAlertFragment.
 
         detailedImage.setImageResource(imageID);
         name.setText(itemName);
-        price.setText("$ " + itemPrice);
+        String priceStr = "$ " + itemPrice;
+        price.setText(priceStr);
         description.setText(itemDesc);
         model.setText(itemModel);
         color.setText(itemColor);
-    }
-
-
-
-    @Override
-    public void onBuyClick() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.SEND_SMS}, 1
-            );
-        }
-        else {
-            SmsManager smsManager = SmsManager.getDefault();
-            SharedPreferences sPref = getSharedPreferences(KeyUtils.userFileKey, MODE_PRIVATE);
-
-            if(sPref.getBoolean(KeyUtils.isLoggedInKey, false)) {
-                String userPhoneNumber = app.phNo;
-                String appPhNo = app.appPhNo;
-                String name = app.name;
-                if(!(userPhoneNumber.isEmpty() || name.isEmpty())) {
-                    String toUserMessage = "You bought" + stringBuilder.substring(20);
-                    String toAppMessage = name + " bought" + stringBuilder.substring(20);
-                    smsManager.sendTextMessage(userPhoneNumber, null, toUserMessage, null, null);
-                    smsManager.sendTextMessage(appPhNo, null, toAppMessage, null, null);
-                }
-                else {
-                    Toast.makeText(this, "First Complete Your Personal Details", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-            }
-            else {
-                startActivity(new Intent(DetailedView.this, LoginSignupActivity.class));
-                finish();
-            }
-            fragManager.beginTransaction()
-                    .hide(buyFragment)
-                    .commit();
-        }
-    }
-
-    @Override
-    public void onCancelClick() {
-        fragManager.beginTransaction()
-                .hide(buyFragment)
-                .commit();
     }
 }
