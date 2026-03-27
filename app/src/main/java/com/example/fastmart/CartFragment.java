@@ -20,6 +20,7 @@ import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class CartFragment extends Fragment
     TextView shippingValueField;
     TextView totalPriceField;
     MaterialButton checkoutBtn;
+    LinearLayout layoutCartCheckout;
     final int SMS_PERMISSION_REQ_CODE = 1;
     float shippingCost;
     float totalPrice;
@@ -65,10 +67,12 @@ public class CartFragment extends Fragment
         String shippingCostStr = "$ " + shippingCost;
         shippingValueField.setText(shippingCostStr);
 
+        totalPriceField = view.findViewById(R.id.total_price_in_cart);
         String totalPriceStr = "$ " + totalPrice;
         totalPriceField.setText(totalPriceStr);
 
-        totalPriceField = view.findViewById(R.id.total_price_in_cart);
+
+        layoutCartCheckout = view.findViewById(R.id.cart_checkout_section);
 
         RecyclerView recyclerView = view.findViewById(R.id.cart_section_recycler);
         recyclerView.setHasFixedSize(true);
@@ -118,6 +122,12 @@ public class CartFragment extends Fragment
     public void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
+        if (app.cart.isEmpty()) {
+            layoutCartCheckout.setVisibility(View.INVISIBLE);
+        }
+        else {
+            layoutCartCheckout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void onCheckoutHandler() {
@@ -157,6 +167,12 @@ public class CartFragment extends Fragment
                     String appMessage = userName + itemsDetailBuilder.substring(3);
                     smsManager.sendTextMessage(userPhNO, null, userMessage, null, null);
                     smsManager.sendTextMessage(appPhNo, null, appMessage, null, null);
+
+
+                    int size = app.cart.size();
+                    app.cart.clear();
+                    adapter.notifyItemRangeRemoved(0, size);
+                    layoutCartCheckout.setVisibility(View.INVISIBLE);
                 }
                 else {
                     Toast.makeText(context, "Complete your details First", Toast.LENGTH_LONG).show();
