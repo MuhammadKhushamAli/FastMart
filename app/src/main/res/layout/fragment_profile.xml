@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_margin="10dp"
     android:paddingHorizontal="20dp"
-    tools:context=".ProfileFragment"
-    >
+    tools:context=".ProfileFragment">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +73,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profile_phNo"
@@ -81,5 +82,14 @@
             android:hint="@string/phNo_hint"
             />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
+        android:backgroundTint="?button_bg_color"
+        android:text="@string/logout_btn_text"
+        />
 
 </LinearLayout>

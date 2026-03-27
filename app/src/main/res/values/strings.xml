@@ -36,4 +36,5 @@
     <string name="checkout_btn_text">Checkout</string>
     <string name="shipping_heading">Shipping</string>
     <string name="total_heading">Total</string>
+    <string name="logout_btn_text">Logout</string>
 </resources>

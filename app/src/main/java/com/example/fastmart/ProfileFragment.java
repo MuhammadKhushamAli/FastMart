@@ -1,5 +1,8 @@
 package com.example.fastmart;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ProfileFragment extends Fragment {
@@ -32,13 +36,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Context context = requireContext();
         TextInputEditText fullNameField = view.findViewById(R.id.profile_fullName);
         TextInputEditText emailField = view.findViewById(R.id.profile_email);
         TextInputEditText dobField = view.findViewById(R.id.profile_dob);
         TextInputEditText genderField = view.findViewById(R.id.profile_gender);
         TextInputEditText phNoField = view.findViewById(R.id.profile_phNo);
+        MaterialButton logoutBtn = view.findViewById(R.id.logout_btn);
 
-        MyApplication app = (MyApplication) requireContext().getApplicationContext();
+        MyApplication app = (MyApplication) context.getApplicationContext();
+        SharedPreferences sPref = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
 
         fullNameField.setInputType(InputType.TYPE_NULL);
         emailField.setInputType(InputType.TYPE_NULL);
@@ -51,5 +58,12 @@ public class ProfileFragment extends Fragment {
         dobField.setText(app.dob);
         genderField.setText(app.gender);
         phNoField.setText(app.phNo);
+
+        logoutBtn.setOnClickListener(v -> {
+            sPref.edit().putBoolean(KeyUtils.isLoggedInKey, false)
+                    .commit();
+            Intent intent = new Intent(context, SplashScreenActivity.class);
+            startActivity(intent);
+        });
     }
 }
