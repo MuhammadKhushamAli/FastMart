@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class BrowseFragment extends ListFragment {
+
+    MyApplication app;
+    SharedPreferences sharedPreferences;
 
     public BrowseFragment() {
     }
@@ -35,8 +45,17 @@ public class BrowseFragment extends ListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
-        MyApplication app = (MyApplication) context.getApplicationContext();
+        sharedPreferences = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
+        app = (MyApplication) context.getApplicationContext();
+
+        app.previousSearch = new ArrayList<>(
+                sharedPreferences.getStringSet(KeyUtils.prevSearchHistoryPrefKey + app.email,
+                        new LinkedHashSet<>()));
+
         androidx.appcompat.widget.SearchView searchView = view.findViewById(R.id.search_search_bar);
+
+        TextView clearAllText = view.findViewById(R.id.clear_all_text);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line,
                 app.previousSearch);
@@ -45,10 +64,10 @@ public class BrowseFragment extends ListFragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                String prevHistory = app.previousSearch.stream().filter(search -> search.equals(query))
-                        .findFirst()
-                        .orElse(null);
-                if (prevHistory == null) {
+                String prevSearch = app.previousSearch.stream().filter(search -> search.equals(query))
+                                .findFirst()
+                                .orElse(null);
+                if(prevSearch == null) {
                     app.previousSearch.add(query);
                     adapter.notifyDataSetChanged();
                 }
@@ -61,5 +80,18 @@ public class BrowseFragment extends ListFragment {
             }
         });
 
+        clearAllText.setOnClickListener(v -> {
+            app.previousSearch.clear();
+            adapter.notifyDataSetChanged();
+            sharedPreferences.edit().remove(KeyUtils.prevSearchHistoryPrefKey + app.email).apply();
+        });
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sharedPreferences.edit().putStringSet(KeyUtils.prevSearchHistoryPrefKey + app.email, new LinkedHashSet<>(app.previousSearch))
+                .apply();
     }
 }

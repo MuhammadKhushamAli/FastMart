@@ -10,6 +10,7 @@ public class KeyUtils {
     public static final String namePrefKey = "prefName";
     public static final String phNoPrefKey = "prefPhNo";
     public static final String genderPrefKey = "prefGender";
+    public static final String prevSearchHistoryPrefKey = "prevSearch";
     public static final String dobPrefKey = "prefDOB";
     public static final String homeFragTag = "homeFrag";
     public static final String browseFragTag = "browseFrag";
