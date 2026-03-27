@@ -53,6 +53,7 @@
             android:textAlignment="viewStart"
             android:fontFamily="sans-serif"
             android:textSize="11sp"
+            android:visibility="gone"
             />
         <TextView
             android:id="@+id/fav_item_name"
