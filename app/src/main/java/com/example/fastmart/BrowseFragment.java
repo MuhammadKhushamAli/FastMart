@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,7 +28,21 @@ public class BrowseFragment extends ListFragment {
     MyApplication app;
     SharedPreferences sharedPreferences;
 
+    setOnClickListener parentActivity;
+
     public BrowseFragment() {
+
+    }
+
+    public interface setOnClickListener {
+        public void goBack();
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        parentActivity = (setOnClickListener) context;
     }
 
     @Override
@@ -45,6 +60,9 @@ public class BrowseFragment extends ListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = requireContext();
+        TextView clearAllText = view.findViewById(R.id.clear_all_text);
+        ImageButton goBackButton = view.findViewById(R.id.browse_go_back);
+
         sharedPreferences = context.getSharedPreferences(KeyUtils.userFileKey, Context.MODE_PRIVATE);
         app = (MyApplication) context.getApplicationContext();
 
@@ -54,7 +72,6 @@ public class BrowseFragment extends ListFragment {
 
         androidx.appcompat.widget.SearchView searchView = view.findViewById(R.id.search_search_bar);
 
-        TextView clearAllText = view.findViewById(R.id.clear_all_text);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line,
@@ -86,6 +103,9 @@ public class BrowseFragment extends ListFragment {
             sharedPreferences.edit().remove(KeyUtils.prevSearchHistoryPrefKey + app.email).apply();
         });
 
+        goBackButton.setOnClickListener(v -> {
+            parentActivity.goBack();
+        });
     }
 
     @Override

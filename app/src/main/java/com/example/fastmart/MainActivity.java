@@ -27,7 +27,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements HomeFragment.setOnclickListener,
         FavoriteFragment.setOnClickListener,
-        DealOfDayFragment.setOnClickListener{
+        DealOfDayFragment.setOnClickListener,
+        BrowseFragment.setOnClickListener{
     MyApplication app;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFrag;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     Fragment selectedFrag;
 
     FragmentManager fragmentManager;
+    boolean revNav = false;
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity
         });
         init(savedInstanceState);
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (revNav) {
+                return true;
+            }
+
             int id = item.getItemId();
             if (id == R.id.home) {
                 selectedFrag = homeFrag;
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentManager.beginTransaction()
                         .hide(activeFrag)
                         .show(selectedFrag)
+                        .addToBackStack(null)
                         .commit();
                 activeFrag = selectedFrag;
                 selectedFrag = null;
@@ -89,6 +96,34 @@ public class MainActivity extends AppCompatActivity
             return false;
         });
 
+        fragmentManager.addOnBackStackChangedListener(() -> {
+            activeFrag = null;
+            int id = 0;
+            if (homeFrag.isVisible()) {
+                activeFrag = homeFrag;
+                id = R.id.home;
+            }
+            else if (browseFrag.isVisible()) {
+                activeFrag = browseFrag;
+                id = R.id.browse;
+            }
+            else if (favoriteFrag.isVisible()) {
+                activeFrag = favoriteFrag;
+                id = R.id.favorite;
+            }
+            else if (cartFrag.isVisible()) {
+                activeFrag = cartFrag;
+                id = R.id.cart;
+            }
+            else if (profileFrag.isVisible()) {
+                activeFrag = profileFrag;
+                id = R.id.profile;
+            }
+
+            revNav = true;
+            bottomNavigationView.setSelectedItemId(id);
+            revNav = false;
+        });
     }
 
     private void init(Bundle savedInstanceState) {
@@ -158,5 +193,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void removeFromFav(Item item) {
         favoriteFrag.removeFromWishlist(item);
+    }
+
+    @Override
+    public void goBack() {
+        fragmentManager.popBackStack();
     }
 }

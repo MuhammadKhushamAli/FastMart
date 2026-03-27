@@ -6,6 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     tools:context=".BrowseFragment">
+    <ImageButton
+        android:id="@+id/browse_go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:contentDescription="@string/back_arrow_desc"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        android:background="@android:color/transparent"
+        />
     <TextView
         android:id="@+id/browse_heading_section"
         android:layout_width="match_parent"
