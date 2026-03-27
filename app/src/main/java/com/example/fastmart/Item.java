@@ -3,12 +3,12 @@ package com.example.fastmart;
 public class Item {
     private int id;
     private int imageID;
-    private String price;
+    private float price;
     private String name;
     private String model;
     private String color;
     private String description;
-    private String discountedPrice;
+    private float discountedPrice;
     private String category;
     private Boolean isFavorite;
     private int itemsAvailable;
@@ -17,12 +17,12 @@ public class Item {
 
     Item(int id,
          int imageID,
-         String price,
+         float price,
          String name,
          String model,
          String color,
          String description,
-         String discountedPrice,
+         float discountedPrice,
          String category,
          int itemsAvailable) {
         this.id = id;
@@ -42,7 +42,7 @@ public class Item {
 
     Item(int id,
          int imageID,
-         String price,
+         float price,
          String name,
          String model,
          String color,
@@ -56,7 +56,7 @@ public class Item {
                 model,
                 color,
                 description,
-                "",
+                0.00f,
                 category,
                 itemsAvailable);
     }
@@ -69,11 +69,11 @@ public class Item {
         this.imageID = imageID;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -108,11 +108,11 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getDiscountedPrice() {
+    public float getDiscountedPrice() {
         return discountedPrice;
     }
 
-    public void setDiscountedPrice(String discountedPrice) {
+    public void setDiscountedPrice(float discountedPrice) {
         this.discountedPrice = discountedPrice;
     }
 
