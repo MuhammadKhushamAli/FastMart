@@ -100,6 +100,7 @@ public class CartFragment extends Fragment
             app.cart.add(item);
             adapter.notifyItemInserted(app.cart.size());
         }
+        layoutCartCheckout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -128,6 +129,7 @@ public class CartFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+        Toast.makeText(context, "heleo", Toast.LENGTH_LONG).show();
         adapter.notifyDataSetChanged();
         if (app.cart.isEmpty()) {
             layoutCartCheckout.setVisibility(View.INVISIBLE);
