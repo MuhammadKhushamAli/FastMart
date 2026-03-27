@@ -41,7 +41,9 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
         Item item = itemArrayList.get(position);
         holder.cartItemImage.setImageResource(item.getImageID());
-        holder.cartItemPrice.setText("$ " + item.getPrice());
+
+        String originalPrice = "$ " + item.getPrice();
+        holder.cartItemOriginalPrice.setText(originalPrice);
         holder.cartItemName.setText(item.getName());
         holder.cartItemModel.setText(item.getModel());
         holder.cartItemColor.setText(item.getColor());
@@ -78,6 +80,9 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
                 listener.notifyDeleteItem();
             }
         });
+
+
+
         listener.calculateTotal();
     }
 
@@ -88,7 +93,8 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
 
     public static class CartItemViewHolder extends RecyclerView.ViewHolder {
         ImageView cartItemImage;
-        TextView cartItemPrice;
+        TextView cartItemOriginalPrice;
+        TextView cartItemDiscountedPrice;
         TextView cartItemName;
         TextView cartItemModel;
         TextView cartItemColor;
@@ -99,7 +105,8 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
             cartItemImage = itemView.findViewById(R.id.cart_item_img);
-            cartItemPrice = itemView.findViewById(R.id.cart_item_price);
+            cartItemOriginalPrice = itemView.findViewById(R.id.cart_original_item_price);
+            cartItemDiscountedPrice = itemView.findViewById(R.id.cart_discounted_item_price);
             cartItemName = itemView.findViewById(R.id.cart_item_name);
             cartItemModel = itemView.findViewById(R.id.cart_item_model);
             cartItemColor = itemView.findViewById(R.id.cart_item_color);

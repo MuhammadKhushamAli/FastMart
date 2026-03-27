@@ -48,10 +48,8 @@ public class CarouselViewPagerAdapter extends RecyclerView.Adapter<CarouselViewP
         holder.carouselItemName.setText(carouselItem.getName());
         holder.carouselItemDesc.setText(carouselItem.getDescription());
 
-        if (carouselItem.getDiscountedPrice() != 0) {
-            holder.carouselItemOriginalPrice.setPaintFlags(
-                    holder.carouselItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
+        holder.carouselItemOriginalPrice.setPaintFlags(
+                holder.carouselItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         holder.favBtn.setOnClickListener((v) -> {
             int pos = holder.getAbsoluteAdapterPosition();
