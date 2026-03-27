@@ -61,7 +61,12 @@ public class CartFragment extends Fragment
         app = (MyApplication) context.getApplicationContext();
         shippingValueField = view.findViewById(R.id.shipping_in_cart);
         checkoutBtn = view.findViewById(R.id.cart_checkout_btn);
-        shippingValueField.setText("$ " + shippingCost);
+
+        String shippingCostStr = "$ " + shippingCost;
+        shippingValueField.setText(shippingCostStr);
+
+        String totalPriceStr = "$ " + totalPrice;
+        totalPriceField.setText(totalPriceStr);
 
         totalPriceField = view.findViewById(R.id.total_price_in_cart);
 
@@ -105,7 +110,8 @@ public class CartFragment extends Fragment
                 totalPrice += item.getPrice() * item.getItemsSelected();
             }
         }
-        totalPriceField.setText("$ " + totalPrice);
+        String totalPriceStr = "$ " + totalPrice;
+        totalPriceField.setText(totalPriceStr);
     }
 
     @Override
