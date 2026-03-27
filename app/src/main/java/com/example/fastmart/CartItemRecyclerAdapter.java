@@ -22,6 +22,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
 
     public interface setOnClickListener {
         public void calculateTotal();
+        public void notifyDeleteItem();
     }
     public CartItemRecyclerAdapter(Context context, ArrayList<Item> itemArrayList, setOnClickListener listener) {
         this.context = context;
@@ -74,6 +75,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
                 itemToBeRemoved.setItemsSelected(1);
                 itemArrayList.remove(pos);
                 notifyItemRemoved(pos);
+                listener.notifyDeleteItem();
             }
         });
         listener.calculateTotal();

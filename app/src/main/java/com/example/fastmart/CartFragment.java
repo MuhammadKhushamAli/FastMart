@@ -119,6 +119,13 @@ public class CartFragment extends Fragment
     }
 
     @Override
+    public void notifyDeleteItem() {
+        if (app.cart.isEmpty()) {
+            layoutCartCheckout.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
