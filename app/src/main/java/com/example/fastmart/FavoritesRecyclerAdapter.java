@@ -2,6 +2,8 @@ package com.example.fastmart;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +42,29 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
     public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
         Item item = itemArrayList.get(position);
         holder.favItemImg.setImageResource(item.getImageID());
-        holder.favItemPrice.setText("$ " + item.getPrice());
+
+        String originalPrice = "$ " + item.getPrice();
+        holder.favItemOriginalPrice.setText(originalPrice);
+
         holder.favItemName.setText(item.getName());
         holder.favItemModel.setText(item.getModel());
         holder.favItemColor.setText(item.getColor());
+
+        if (item.getDiscountedPrice() != 0) {
+            holder.favItemOriginalPrice.setTextColor(Color.RED);
+
+            String discountedPrice = "$ " + item.getDiscountedPrice();
+            holder.favItemDiscountedPrice.setText(discountedPrice);
+            holder.favItemDiscountedPrice.setPaintFlags(
+                    holder.favItemDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            );
+            holder.favItemDiscountedPrice.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.favItemOriginalPrice.setTextColor(holder.favItemDiscountedPrice.getTextColors());
+            holder.favItemDiscountedPrice.setVisibility(View.GONE);
+        }
+
         holder.favMore.setOnClickListener(v -> {
             int pos = holder.getAbsoluteAdapterPosition();
 
@@ -78,7 +99,8 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
 
     public static class FavoritesViewHolder extends RecyclerView.ViewHolder {
         ImageView favItemImg;
-        TextView favItemPrice;
+        TextView favItemOriginalPrice;
+        TextView favItemDiscountedPrice;
         TextView favItemName;
         TextView favItemModel;
         TextView favItemColor;
@@ -87,7 +109,8 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
         public FavoritesViewHolder(@NonNull View itemView) {
             super(itemView);
             favItemImg = itemView.findViewById(R.id.fav_item_img);
-            favItemPrice = itemView.findViewById(R.id.fav_item_price);
+            favItemOriginalPrice = itemView.findViewById(R.id.fav_original_item_price);
+            favItemDiscountedPrice = itemView.findViewById(R.id.fav_discounted_item_price);
             favItemName = itemView.findViewById(R.id.fav_item_name);
             favItemModel = itemView.findViewById(R.id.fav_item_model);
             favItemColor = itemView.findViewById(R.id.fav_item_color);
