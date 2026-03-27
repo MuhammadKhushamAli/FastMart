@@ -1,6 +1,8 @@
 package com.example.fastmart;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -81,7 +84,20 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
             }
         });
 
-
+        if (item.getDiscountedPrice() != 0) {
+            holder.cartItemOriginalPrice.setTextColor(Color.RED);
+            String discountedPrice = "$ " + item.getDiscountedPrice();
+            holder.cartItemDiscountedPrice.setText(discountedPrice);
+            holder.cartItemDiscountedPrice.setPaintFlags(
+                    holder.cartItemDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            );
+            holder.cartItemDiscountedPrice.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.cartItemOriginalPrice.setTextColor(
+                    holder.cartItemDiscountedPrice.getTextColors());
+            holder.cartItemDiscountedPrice.setVisibility(View.GONE);
+        }
 
         listener.calculateTotal();
     }
