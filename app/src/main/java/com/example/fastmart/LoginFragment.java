@@ -1,6 +1,7 @@
 package com.example.fastmart;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -60,7 +61,10 @@ public class LoginFragment extends Fragment {
                        (sPref.getString(KeyUtils.passPrefKey + email, "").equals(password))) {
                    if (!(sPref.edit().putBoolean(KeyUtils.isLoggedInKey, true).commit())) {
                        Toast.makeText(context, "Unable To LoggedIn", Toast.LENGTH_LONG).show();
+                       return;
                    }
+                   Intent intent = new Intent(context, MainActivity.class);
+                   startActivity(intent);
                }
                else {
                    Toast.makeText(context, "Incorrect Details", Toast.LENGTH_LONG).show();
