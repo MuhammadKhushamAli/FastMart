@@ -3,6 +3,7 @@ package com.example.fastmart;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
             holder.cartItemOriginalPrice.setTextColor(
                     ContextCompat.getColor(context, R.color.discounted_tag_color)
                     );
-
+            holder.cartItemOriginalPrice.setTypeface(null, Typeface.NORMAL);
             holder.cartItemDiscountedPrice.setVisibility(View.VISIBLE);
         }
         else {
@@ -106,6 +107,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
             holder.cartItemOriginalPrice.setPaintFlags(
                     holder.cartItemDiscountedPrice.getPaintFlags()
             );
+            holder.cartItemOriginalPrice.setTypeface(null, Typeface.BOLD);
             holder.cartItemDiscountedPrice.setVisibility(View.GONE);
         }
 
