@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -64,24 +65,35 @@ public class DetailedView extends AppCompatActivity {
 
 
         buyButton.setOnClickListener((v) -> {
-            Item itemToBeCarted = app.cart.stream().filter(itemInCart -> itemInCart.getId() == id)
-                    .findFirst()
-                    .orElse(null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle("Add to Cart?")
+                    .setPositiveButton("Yes", (a, b) -> {
+                        addToCartHandler(item);
+                    })
+                    .setNegativeButton("No", (a, b) -> {});
 
-            if (itemToBeCarted == null) {
-                app.cart.add(item);
-            }
-            else {
-                itemToBeCarted.incItemsSelected();
-            }
-            Toast.makeText(this, item.getName() + " Added to Cart", Toast.LENGTH_LONG).show();
-            finish();
+            builder.create().show();
         });
         backArrow.setOnClickListener((v) -> {
             finish();
         });
     }
 
+    private void addToCartHandler(Item item) {
+        int id = item.getId();
+        Item itemToBeCarted = app.cart.stream().filter(itemInCart -> itemInCart.getId() == id)
+                .findFirst()
+                .orElse(null);
+
+        if (itemToBeCarted == null) {
+            app.cart.add(item);
+        }
+        else {
+            itemToBeCarted.incItemsSelected();
+        }
+        Toast.makeText(this, item.getName() + " Added to Cart", Toast.LENGTH_LONG).show();
+        finish();
+    }
     private void initAndSetup(
             int imageID,
             String itemName,
