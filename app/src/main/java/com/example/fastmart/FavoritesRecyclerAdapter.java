@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -51,17 +53,28 @@ public class FavoritesRecyclerAdapter extends RecyclerView.Adapter<FavoritesRecy
         holder.favItemColor.setText(item.getColor());
 
         if (item.getDiscountedPrice() != 0) {
-            holder.favItemOriginalPrice.setTextColor(Color.RED);
-
+            holder.favItemDiscountedPrice.setTextColor(Color.RED);
+            holder.favItemOriginalPrice.setTextColor(
+                    ContextCompat.getColor(context, R.color.discounted_tag_color)
+            );
             String discountedPrice = "$ " + item.getDiscountedPrice();
             holder.favItemDiscountedPrice.setText(discountedPrice);
-            holder.favItemDiscountedPrice.setPaintFlags(
-                    holder.favItemDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            holder.favItemOriginalPrice.setPaintFlags(
+                    holder.favItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
             );
+            holder.favItemOriginalPrice.setTextSize(11);
+            holder.favItemOriginalPrice.setTypeface(null, Typeface.NORMAL);
             holder.favItemDiscountedPrice.setVisibility(View.VISIBLE);
         }
         else {
-            holder.favItemOriginalPrice.setTextColor(holder.favItemDiscountedPrice.getTextColors());
+            holder.favItemOriginalPrice.setTextColor(
+                    Color.rgb(255,255,255)
+            );
+            holder.favItemOriginalPrice.setTypeface(null, Typeface.BOLD);
+            holder.favItemOriginalPrice.setTextSize(15);
+            holder.favItemOriginalPrice.setPaintFlags(
+                    holder.favItemDiscountedPrice.getPaintFlags()
+            );
             holder.favItemDiscountedPrice.setVisibility(View.GONE);
         }
 
