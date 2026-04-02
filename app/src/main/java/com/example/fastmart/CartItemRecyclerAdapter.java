@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.color.ColorContrast;
+
 import java.util.ArrayList;
 
 public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecyclerAdapter.CartItemViewHolder> {
@@ -85,17 +87,25 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
         });
 
         if (item.getDiscountedPrice() != 0) {
-            holder.cartItemOriginalPrice.setTextColor(Color.RED);
+            holder.cartItemDiscountedPrice.setTextColor(Color.RED);
             String discountedPrice = "$ " + item.getDiscountedPrice();
             holder.cartItemDiscountedPrice.setText(discountedPrice);
-            holder.cartItemDiscountedPrice.setPaintFlags(
-                    holder.cartItemDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            holder.cartItemOriginalPrice.setPaintFlags(
+                    holder.cartItemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
             );
+            holder.cartItemOriginalPrice.setTextColor(
+                    ContextCompat.getColor(context, R.color.discounted_tag_color)
+                    );
+
             holder.cartItemDiscountedPrice.setVisibility(View.VISIBLE);
         }
         else {
             holder.cartItemOriginalPrice.setTextColor(
-                    holder.cartItemDiscountedPrice.getTextColors());
+                    Color.rgb(255,255,255)
+            );
+            holder.cartItemOriginalPrice.setPaintFlags(
+                    holder.cartItemDiscountedPrice.getPaintFlags()
+            );
             holder.cartItemDiscountedPrice.setVisibility(View.GONE);
         }
 
