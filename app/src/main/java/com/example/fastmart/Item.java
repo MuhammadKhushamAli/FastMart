@@ -77,6 +77,7 @@ public class Item implements Parcelable {
         this.itemsAvailable = in.readInt();
         this.itemsSelected = in.readInt();
         this.id = in.readInt();
+        this.discountedPrice = in.readFloat();
     }
     public int getImageID() {
         return imageID;
@@ -205,6 +206,7 @@ public class Item implements Parcelable {
         parcel.writeInt(itemsAvailable);
         parcel.writeInt(itemsSelected);
         parcel.writeInt(id);
+        parcel.writeFloat(discountedPrice);
     }
     public static final Creator<Item> CREATOR = new Creator<Item>() {
 

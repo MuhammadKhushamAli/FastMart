@@ -4,6 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.widget.Button;
@@ -27,6 +30,7 @@ public class DetailedView extends AppCompatActivity {
     ImageView backArrow;
     TextView name;
     TextView price;
+    TextView discountedPrice;
     TextView description;
     TextView model;
     TextView color;
@@ -52,6 +56,7 @@ public class DetailedView extends AppCompatActivity {
                 item.getImageID(),
                 item.getName(),
                 item.getPrice(),
+                item.getDiscountedPrice(),
                 item.getDescription(),
                 item.getModel(),
                 item.getColor()
@@ -81,6 +86,7 @@ public class DetailedView extends AppCompatActivity {
             int imageID,
             String itemName,
             Float itemPrice,
+            Float itemDiscountedPrice,
             String itemDesc,
             String itemModel,
             String itemColor
@@ -89,6 +95,7 @@ public class DetailedView extends AppCompatActivity {
         detailedImage = findViewById(R.id.detailed_item_image);
         name = findViewById(R.id.detailed_item_name);
         price = findViewById(R.id.detailed_item_price);
+        discountedPrice = findViewById(R.id.detailed_item_discounted_price);
         description = findViewById(R.id.detailed_item_description);
         model = findViewById(R.id.detailed_item_model);
         color = findViewById(R.id.detailed_item_color);
@@ -103,5 +110,22 @@ public class DetailedView extends AppCompatActivity {
         description.setText(itemDesc);
         model.setText(itemModel);
         color.setText(itemColor);
+
+        if (itemDiscountedPrice != 0) {
+            String discountedPriceText = "$ " + itemDiscountedPrice;
+            discountedPrice.setText(discountedPriceText);
+            discountedPrice.setTextColor(Color.RED);
+            price.setPaintFlags(
+                    price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            );
+            price.setTextSize(25);
+            discountedPrice.setTextSize(30);
+            price.setTypeface(null, Typeface.NORMAL);
+            discountedPrice.setTypeface(null, Typeface.BOLD);
+            price.setTextColor(
+                    ContextCompat.getColor(this, R.color.discounted_tag_color)
+            );
+            discountedPrice.setVisibility(TextView.VISIBLE);
+        }
     }
 }
