@@ -101,6 +101,7 @@ public class CartFragment extends Fragment
             adapter.notifyItemInserted(app.cart.size());
         }
         layoutCartCheckout.setVisibility(View.VISIBLE);
+        Toast.makeText(context, item.getName() + " Added to Cart", Toast.LENGTH_LONG).show();
     }
 
     @Override
