@@ -98,6 +98,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
                     ContextCompat.getColor(context, R.color.discounted_tag_color)
                     );
             holder.cartItemOriginalPrice.setTypeface(null, Typeface.NORMAL);
+            holder.cartItemOriginalPrice.setTextSize(11);
             holder.cartItemDiscountedPrice.setVisibility(View.VISIBLE);
         }
         else {
@@ -108,6 +109,7 @@ public class CartItemRecyclerAdapter extends RecyclerView.Adapter<CartItemRecycl
                     holder.cartItemDiscountedPrice.getPaintFlags()
             );
             holder.cartItemOriginalPrice.setTypeface(null, Typeface.BOLD);
+            holder.cartItemOriginalPrice.setTextSize(15);
             holder.cartItemDiscountedPrice.setVisibility(View.GONE);
         }
 
